@@ -12,14 +12,17 @@ Built by Stanley Tang, Tony Chen and Damien Roche.
 Elegant Dashboard
 
 
+
 [![](http://github.com/stanleytang/buzzblaze/raw/master/screenshots/screenshot2.png)](http://github.com/stanleytang/buzzblaze/raw/master/screenshots/screenshot2.png)
 
 Drag-and-Drop Widgets
 
 
+
 [![](http://github.com/stanleytang/buzzblaze/raw/master/screenshots/screenshot3.png)](http://github.com/stanleytang/buzzblaze/raw/master/screenshots/screenshot3.png)
 
 Browsing Article
+
 
 
 [![](http://github.com/stanleytang/buzzblaze/raw/master/screenshots/screenshot4.png)](http://github.com/stanleytang/buzzblaze/raw/master/screenshots/screenshot4.png)
