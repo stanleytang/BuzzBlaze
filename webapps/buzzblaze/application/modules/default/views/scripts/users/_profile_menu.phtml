@@ -1,0 +1,7 @@
+<div id="menu">
+  <ul>
+    <li class="<?php echo $this->activeMenu('user_feeds'); ?>"><a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'user_feeds'); ?>" ><span>Subscriptions</span></a></li>
+    <li class="<?php echo $this->activeMenu('likes'); ?>"><a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'likes'); ?>"><span>Likes</span></a></li>
+    <li class="<?php echo $this->activeMenu('activities'); ?>"><a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'activities'); ?>"><span>Recent activity</span></a></li>
+  </ul>
+</div>

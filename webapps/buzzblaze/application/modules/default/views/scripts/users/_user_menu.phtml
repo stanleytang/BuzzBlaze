@@ -1,0 +1,14 @@
+<div id="menu">
+  <ul>
+    <li class="<?php echo $this->activeMenu('followers'); ?>">
+      <a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'followers'); ?>">
+        <span>Followers (<?php echo $this->user->statistic('followers'); ?>)</span>
+      </a>
+    </li>
+    <li class="<?php echo $this->activeMenu('following'); ?>">
+      <a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'following'); ?>">
+        <span>Following (<?php echo $this->user->statistic('following'); ?>)</span>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,198 @@
+<?= $this->doctype(); ?>
+<html>
+<head>
+  <?= $this->partial('_partial/assets.phtml'); ?>
+  <?= $this->partial('_partial/assets_panel.phtml'); ?>
+  <?= $this->partial('_partial/head.phtml'); ?>
+</head>
+<body>
+  <div id="wrap">
+
+      <?= $this->partial('_partial/header.phtml'); ?>
+
+      <!-- Main part -->
+      <div id="main">
+          <div class="shell">
+
+              <!-- Content -->
+              <div id="content" class="left">
+
+                  <?= $this->partial('_partial/account_menu.phtml'); ?>
+
+                  <?php if($this->authUser->isPending()): ?>
+                    <div class="user-details">
+                      <h3>Please check your inbox then confirm your account.</h3>
+                      <p><a href="javascript:;" class="resend_confirm_email">Resend Confirmation Email</a></p>
+                    </div>
+                  <?php endif; ?>
+
+                  <!-- Feed search -->
+                  <div id="search">
+                      <form action="/feeds/search" method="get">
+                          <div>
+                              <span class="field left">
+                                <input type="hidden" name="page" value="<?php echo (isset($this->userPage)) ? $this->userPage->getId() : $this->authUser->getDefaultPage()->getId(); ?>" />
+                                <input id="q" name="q" type="text" class="blink" value="Enter keywords or feed URL to search for feeds" title="Enter keywords or feed URL to search for feeds" />
+                              </span>
+                              <input type="submit" class="btn-go notext left" name="" value="Go" />
+                              <div class="cl">&nbsp;</div>
+                          </div>
+                      </form>
+                  </div>
+                  <!-- END Feed search -->
+
+                  <!-- Flash messages -->
+                  <? if(isset($this->messages) && !empty($this->messages)): ?>
+                  <div id="messages">
+                    <span><?= current($this->messages); ?></span>
+                  </div>
+                  <? else: ?>
+                  <div id="messages" style="display: none;"></div>
+                  <? endif; ?>
+                  <!-- END Flash messages -->
+
+                  <? if(isset($this->isStatic)): ?>
+
+                    <div id="menu">
+                      <?= $this->partial('_partial/static_menu.phtml'); ?>
+                    </div>
+
+                    <div id="content-inner" class="right">
+                      <?php echo $this->layout()->content; ?>
+                    </div>
+                    <div class="cl">&nbsp;</div>
+
+                  <? else: ?>
+
+                    <?= $this->layout()->content; ?>
+
+                  <? endif; ?>
+
+                  <? if('home' != $this->userPage->getName()): ?>
+                  <div><a href="javascript:;" id="delete_page"></a></div>
+                  <? endif; ?>
+              </div>
+              <!-- END Content -->
+
+              <!-- Sidebar -->
+              <div id="sidebar" class="right">
+
+                  <!-- User info -->
+                  <div id="user_profile" class="box user-info mine">
+                      <ul>
+                          <li class="avatar left">
+                            <a href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'profile'); ?>">
+                              <div class="profile-img-avatar"><img src="<?php echo $this->authUser->profilePicture(true); ?>" /></div>
+                            </a>
+                          </li>
+                          <li class="section left">
+                            <a id="n_following" href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'following'); ?>">
+                              <?php echo $this->authUser->statistic('following'); ?>
+                            </a> Following
+                          </li>
+                          <li class="section left">
+                            <a id="n_followers" href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'followers'); ?>">
+                              <?php echo $this->authUser->statistic('followers'); ?>
+                            </a> Followers
+                          </li>
+                          <li class="section left">
+                            <a id="n_likes" href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'likes'); ?>">
+                              <?php echo $this->authUser->statistic('likes'); ?>
+                            </a> Likes
+                          </li>
+                      </ul>
+                      <div class="cl">&nbsp;</div>
+                  </div>
+                  <!-- END User info -->
+
+                  <?= $this->partial('_partial/ads.phtml'); ?>
+
+                  <!-- Social stream -->
+                  <div class="box social-stream">
+                      <h2>SocialStream</h2>
+
+                      <ul id="social">
+                        <?= $this->partialLoop('_partial/stream.phtml', $this->friendStreams); ?>
+                        <li><a class="center" href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'streams'); ?>">more streams &raquo;</a></li>
+                      </ul>
+                  </div>
+                  <!-- END Social stream -->
+
+              </div>
+              <!-- END Sidebar -->
+
+              <div class="cl">&nbsp;</div>
+          </div>
+      </div>
+      <!-- END Main part -->
+
+      <!-- Sticky footer -->
+      <div id="footer-push"></div>
+      <!-- END Sticky footer -->
+  </div>
+
+  <?= $this->partial('_partial/footer.phtml'); ?>
+  <script type="text/javascript">
+    Panels.initDashboard();
+    Cufon.now();
+  </script>
+
+  <script type="text/javascript">
+    var page_id = <?php echo (isset($this->userPage)) ? $this->userPage->getId() : $this->authUser->getDefaultPage()->getId(); ?>;
+
+    jQuery(function($) {
+      if(1 == $('#q').length) {
+        $('#q').autocomplete({
+          minLength: 3,
+          source: function(request, response) {
+            $.getJSON("/search/feeds", {
+              q: request.term
+            }, response );
+          },
+          focus: function( event, ui ) {
+            $( "#q" ).val( ui.item.feed_url );
+            return false;
+          },
+          select: function( event, ui ) {
+
+            $.ajax({
+              url: '/feeds',
+              type: 'POST',
+              dataType: 'json',
+              data: {
+                feedurl: ui.item.feed_url,
+                _method: "ADD_UFEED",
+                _redir: "<?php echo Zend_Controller_Front::getInstance()->getRequest()->getRequestUri(); ?>",
+                page: page_id
+              },
+              beforeSend: function(request, setting) {
+                $.fancybox({
+                  content: "<p>Please wait while adding this feed...</p>"
+                });
+              },
+              success: function(data) {
+                $('#messages').html(data.msg).show();
+                $.fancybox.close();
+
+                setTimeout(function() {
+                  location.reload(true);
+                }, 500);
+              }
+            });
+
+            return false;
+          }
+        })
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+          return $( "<li></li>" )
+            .data( "item.autocomplete", item )
+            .append( "<a><strong>" + item.feed_title + "</strong><br />" + item.feed_description + "</a>" )
+            .appendTo( ul );
+        };
+      }
+    });
+
+  </script>
+
+</body>
+</html>

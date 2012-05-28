@@ -1,0 +1,82 @@
+<!-- Footer -->
+<div id="footer">
+    <div class="shell">
+        <p>
+            <!-- @INFO: page editor? -->
+            <span class="foot-nav right">
+                <a href="/overview">About</a> ·
+				<a href="/people">People</a> ·
+				<a href="http://blog.buzzblaze.com">Blog</a> ·
+				<a href="/press">Press</a> .
+                <a href="/advertising">Advertising</a> ·
+                <a href="/contact">Contact</a>
+            </span>
+
+            BuzzBlaze &copy; <?=date("Y");?> · v1.1
+        </p>
+        <div class="cl">&nbsp;</div>
+    </div>
+</div>
+<!-- END Footer -->
+
+<? if('production' == APPLICATION_ENV): ?>
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21599818-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+    <?php
+    $authUser = null;
+    if(Zend_Auth::getInstance()->hasIdentity()) {
+      $authUser = Zend_Registry::get('authUser');
+    }
+    ?>
+
+    <?php if(null !== $authUser): ?>
+      var user_pages = <?php echo $authUser->pagesJson(); ?>;
+    <?php endif; ?>
+  </script>
+<? endif; ?>
+
+<script type="text/javascript">
+  <?php
+  $authUser = null;
+  if(Zend_Auth::getInstance()->hasIdentity()) {
+    $authUser = Zend_Registry::get('authUser');
+  }
+  ?>
+
+  <?php if(null !== $authUser): ?>
+    var user_pages = <?php echo $authUser->pagesJson(); ?>;
+  <?php endif; ?>
+</script>
+
+<script type="text/javascript">
+ var uservoiceOptions = {
+   key: 'buzzblaze',
+   host: 'buzzblaze.uservoice.com', 
+   forum: '103351',
+   alignment: 'left',
+   background_color:'#305170', 
+   text_color: 'white',
+   hover_color: '#5b7c9d',
+   lang: 'en',
+   showTab: true
+ };
+ function _loadUserVoice() {
+   var s = document.createElement('script');
+   s.src = ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js";
+   document.getElementsByTagName('head')[0].appendChild(s);
+ }
+ _loadSuper = window.onload;
+ window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
+</script>
+
+<?= $this->inlineScript(); ?>

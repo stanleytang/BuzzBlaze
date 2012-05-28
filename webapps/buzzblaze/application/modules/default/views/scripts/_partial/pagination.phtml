@@ -1,0 +1,13 @@
+<? if($this->pageCount): ?>
+  <div class="pagination">
+    <? if(isset($this->previous)): ?>
+      <a class="btn left" href="<?= $this->url(array('page' => $this->previous)); ?>">Prev</a>
+    <? endif; ?>
+
+    <? if(isset($this->next)): ?>
+      <a class="btn right" href="<?= $this->url(array('page' => $this->next)); ?>">Next</a>
+    <? endif; ?>
+
+    <p>Page <?php echo $this->current; ?></p>
+  </div>
+<? endif; ?>

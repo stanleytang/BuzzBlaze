@@ -1,0 +1,46 @@
+<? $title = "{$this->user->getFullName()} ({$this->user->getUsername()})"; ?>
+<?php $this->headTitle($title); ?>
+
+<!-- Feeds nav -->
+<div id="feeds-nav">
+    <?php $class = ('home' == $this->userPage->getName()) ? 'active' : ''; ?>
+    <ul class="left">
+      <li>
+        <a class="<?= $class; ?>" href="<?php echo $this->url(array('username' => $this->user->getUsername(), 'page_name' => 'home'), 'profile'); ?>"><span>Home</span></a>
+      </li>
+      <?php foreach($this->user->pages() as $page): ?>
+        <?php if('home' == $page->getName()) continue; ?>
+        <?php $class = ($page->getName() == $this->userPage->getName()) ? 'active' : ''?>
+        <li>
+          <a class="<?= $class; ?>" href="<?php echo $this->url(array('username' => $this->user->getUsername(), 'page_name' => $page->getName()), 'profile'); ?>"><span><?php echo $page->getTitle(); ?></span></a>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+    <div class="cl">&nbsp;</div>
+</div>
+<!-- END Feeds nav -->
+
+<!-- Feed boxes -->
+<div id="columns">
+    <ul class="column">
+      <?php foreach($this->userPage->feeds() as $ufeed): ?>
+      <li class="widget <?php echo $ufeed->getColor(); ?> <?php echo $ufeed->getDisplayString(); ?>" data-href="<?php echo $this->url(array('feed_uuid' => $ufeed->getFeed()->getUuid()), 'feed'); ?>" data-feedurl="<?php echo $ufeed->getFeed()->getUrl(); ?>">
+            <div class="widget-head">
+                <img src="<?= $this->favicon($ufeed->getFeed()->getWebsite()); ?>" width="16" height="16" />
+                <h3><?php echo $this->shortener($ufeed->getTitle(), 40); ?></h3>
+            </div>
+            <div class="widget-content">
+                <div id="carousel_<?php echo $ufeed->getId(); ?>" class="carousel" data-href="<?php echo $this->url(array('feed_uuid' => $ufeed->getFeed()->getUuid()), 'feed'); ?>">
+                    <ul>
+                      <!-- insert carousel items here -->
+                    </ul>
+                    <div class="cl">&nbsp;</div>
+                </div>
+            </div>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+    <div class="cl">&nbsp;</div>
+</div>
+<!-- END Feed boxes -->
+

@@ -1,0 +1,1 @@
+a:3:{s:3:"url";s:42:"http://www.mcteague.ca/RSS/GPT_Toronto.xml";s:8:"feed_url";s:35:"http://danmcteague.liberal.ca/feed/";s:5:"build";s:14:"20110128231735";}

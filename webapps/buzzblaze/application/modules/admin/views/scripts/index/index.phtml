@@ -1,0 +1,24 @@
+<? $this->headTitle('Admin'); ?>
+
+<div class="grid_16">
+  <div id="user_stats" class="grid_6">
+    <?
+    $params = array(
+      'chs' => '300x205',
+      'cht' => 'pc',
+      'chd' => 't:' . $this->numActiveUsers. ',' . $this->numUsers,
+      'chdl' => 'Active User|User',
+      'chdlp' => 'l',
+      'chtt' => 'User Statistics');
+    ?>
+    <img src="http://chart.apis.google.com/chart?<?= http_build_query($params); ?>" />
+  </div>
+
+  <div id="overal_stats" class="grid_8">
+    <p>
+      Currenty, we have <strong><?= $this->numActiveUsers; ?> active users</strong> from <strong><?= $this->numUsers; ?> total users</strong>.<br />
+      We are watching <strong><?= $this->numFeeds; ?> feeds</strong>.<br />
+      We manage <strong><?= $this->numLikes; ?>  liked entries</strong> from about <strong><?= $this->numEntries; ?> total of entries</strong>.
+    </p>
+  </div>
+</div>

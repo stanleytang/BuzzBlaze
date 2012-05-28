@@ -1,0 +1,8 @@
+<?php $q = (null !== $this->q) ? '?q=' . urlencode($this->q) : ''; ?>
+<div id="menu">
+  <ul>
+    <li class="<?php echo $this->activeMenu('articles'); ?>"><a href="<?php echo $this->url(array('controller' => 'search', 'action' => 'index'), 'default') . $q; ?>"><span>Articles</span></a></li>
+    <li class="<?php echo $this->activeMenu('people'); ?>"><a href="<?php echo $this->url(array('controller' => 'search', 'action' => 'people'), 'default') . $q; ?>"><span>People</span></a></li>
+    <li class="<?php echo $this->activeMenu('feeds'); ?>"><a href="<?php echo $this->url(array('controller' => 'search', 'action' => 'feeds'), 'default') . $q; ?>"><span>Feeds</span></a></li>
+  </ul>
+</div>

@@ -1,0 +1,141 @@
+<?= $this->doctype(); ?>
+<html>
+<head>
+  <?= $this->partial('_partial/assets.phtml'); ?>
+  <?= $this->partial('_partial/head.phtml'); ?>  
+</head>
+<body>
+  <div id="wrap">
+
+      <div id="header">
+        <div class="shell">
+          <h1 id="logo-big" class="left"><a href="<?php echo $this->url(array(), 'default'); ?>">BuzzBlaze</a></h1>
+          <div class="cl">&nbsp;</div>
+        </div>
+      </div>
+
+      <!-- Main part -->
+      <div id="main">
+          <div class="shell">
+
+            <!-- Flash messages -->
+            <? if(isset($this->messages) && !empty($this->messages)): ?>
+            <div id="messages">
+              <span><?= current($this->messages); ?></span>
+            </div>
+            <? else: ?>
+            <div id="messages" style="display: none;"></div>
+            <? endif; ?>
+            <!-- END Flash messages -->
+		    <? if (strstr($this->layout()->content, '<form id="registration"') ) { ?>
+				<div id="sign-up-box" class="modal-box">
+        			<div class="head">
+        				Sign Up for BuzzBlaze 
+        			</div>
+        			<div class="body">
+        				<div class="gform_wrapper">
+        					<form id="registration" enctype="application/x-www-form-urlencoded" method="post" action="/register">
+							<input name="_invite_code" value="satya" id="_invite_code" type="hidden">
+	        					<ul class="gform_fields">
+	        						<li class="gfield">
+	        							<label class="gfield_label gfield_label_medium">Full name</label>
+	        							<div class="ginput_container">
+	        								<input type="text" name="full_name" id="full_name" class="medium left field-fullname" value="" title="Enter your first and last name" />
+	        								<p class="control-bar left">
+	        									Enter your first and last name
+	        								</p>
+	        								<div class="cl">&nbsp;</div>
+	        								<small>Your full name will appear on your public profile</small>
+	        							</div>
+	        							<div class="cl">&nbsp;</div>
+	        						</li>
+	        						<li class="gfield">
+	        							<label class="gfield_label gfield_label_medium">Username</label>
+	        							<div class="ginput_container">
+	        								<input type="text" name="username" id="username" class="medium left field-username" value="" title="Pick a unique username" />
+	        								<p class="control-bar left">Pick a unique username</p>
+	        								<div class="cl">&nbsp;</div>
+	        								<small>Your public profile is <span id="user-address">http://buzzblaze.com/<span >username</span></span></small>
+	        							</div>
+	        							<div class="cl">&nbsp;</div>
+	        						</li>
+	        						<li class="gfield">
+	        							<label class="gfield_label gfield_label_medium">Email</label>
+	        							<div class="ginput_container">
+        								<input type="text" name="email" id="email" class="medium left field-email" value="" title="Enter your real email address" />
+	        								<p class="control-bar left">
+	        									Enter your real email address
+	        								</p>
+	        								<div class="cl">&nbsp;</div>
+	        								<small>Email will not be publicly shared</small>
+	        							</div>
+	        							<div class="cl">&nbsp;</div>
+	        						</li>  
+	        						<li class="gfield">
+	        							<label class="gfield_label gfield_label_medium">New Password</label>
+	        							<div class="ginput_container">
+	        							<input type="password" name="password" id="password" class="medium left field-password" value="" title="6 characters or more (no spaces)"/>
+	        							<p class="control-bar left">
+	        								6 characters or more (no spaces)
+	        							</p>
+	        							<div class="cl">&nbsp;</div>
+	        							</div>
+	        							<div class="cl">&nbsp;</div>
+	        						</li>        						      						      						
+	        						<li class="gfield">
+	        							<label class="gfield_label gfield_label_medium">Confirm Password</label>
+	        							<div class="ginput_container">
+	        								<input type="password" name="password_confirm" id="password_confirm" class="medium left field-confirm-password" value="" title="Re-type your password" />
+	        								<p class="control-bar left">
+	        									
+	        								</p>
+	        								<div class="cl">&nbsp;</div>
+	        							</div>
+	        							<div class="cl">&nbsp;</div>
+	        						</li>
+	        						<li class="gfield">
+	        							<p style="width: 375px; line-height: 1; padding: 0 0 0 135px;"><small>By clicking on "Sign Up" below, you are confirming that you accept the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a> for using BuzzBlaze.</small></p>
+	        						</li>
+	        					</ul>
+	        					
+	        					<div class="gform_footer">
+	        						 <input type="submit" class="btn-signup" value="Sign Up" title="Sign Up" /> 
+	        					</div>
+	        				</form>
+        				</div>
+        			</div>
+        		</div>   
+                
+                <div class="cl">&nbsp;</div>
+
+          </div>
+      </div>
+      <!-- END Main part -->
+
+      <!-- Sticky footer -->
+      <div id="footer-push"></div>
+      <!-- END Sticky footer -->
+  </div>
+
+  <?= $this->partial('_partial/footer.phtml'); ?>
+
+</body>
+</html>
+
+		    <? die(0);
+			} else { ?>
+			     <?php echo $this->layout()->content; ?>
+                  	<div class="cl">&nbsp;</div>
+                    </div>
+                    </div>
+                    <!-- END Main part -->                    
+                    <!-- Sticky footer -->
+                    <div id="footer-push"></div>
+                    <!-- END Sticky footer -->
+                    </div>        
+                    <?= $this->partial('_partial/footer.phtml'); ?>        
+                    </body>
+                    </html>
+			<? }?>		
+                                
+       

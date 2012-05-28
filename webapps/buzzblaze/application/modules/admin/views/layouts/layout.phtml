@@ -1,0 +1,104 @@
+<?= $this->doctype(); ?>
+<html>
+<head>
+  <? 
+  $this->headScript()->prependFile(
+    'http://html5shiv.googlecode.com/svn/trunk/html5.js',
+    'text/javascript',
+    array('conditional' => 'IE')
+  );
+
+  $this->headStyle()->prependStyle(
+    'article, aside, dialog, figure, footer, header, hgroup, nav, section { display: block; }'
+  );
+
+  $this->headLink()
+    ->appendStylesheet('/javascripts/jquery/jqueryui/css/redmond/jquery-ui-1.8.8.custom.css')
+    ->appendStylesheet('/javascripts/jquery/fancybox/jquery.fancybox-1.3.4.css')
+    ->appendStylesheet('/stylesheets/ie6.css', 'all', 'IE')
+    ->appendStylesheet('/stylesheets/style.css', 'all')
+    ->appendStylesheet('/stylesheets/admin.css');
+
+  // inline script
+  $this->inlineScript()
+    ->appendFile('/javascripts/jquery/jquery-1.4.4.min.js')
+    ->appendFile('/javascripts/jquery/jqueryui/jquery-ui-1.8.8.custom.min.js')
+    ->appendFile('/javascripts/jquery/fancybox/jquery.fancybox-1.3.4.pack.js');
+
+  ?>
+  <?= $this->headTitle(); ?>
+  <?= $this->headMeta(); ?>
+  <?= $this->headLink(); ?>
+  <?= $this->headStyle(); ?>
+  <?= $this->headScript(); ?>
+</head>
+<body id="admin">
+  <div id="wrap">
+
+      <div id="header">
+        <h1><a href="<?= $this->url(array('action' => 'index', 'controller' => 'index', 'module' => 'default'), 'default'); ?>"><?= $this->siteConfig('title'); ?></a></h1>
+      </div>
+
+      <!-- Main part -->
+      <div id="main">
+          <div class="shell" id="profile">
+
+              <!-- Content -->
+              <div id="content" class="left">
+
+                <?php
+                $auth = Zend_Auth::getInstance();
+                if($auth->hasIdentity() && 'admin' == $auth->hasIdentity()): ?>
+                <nav id="adminnav" class="grid_16">
+                  <ul>
+                    <li><a href="<?= $this->url(array('action' => 'index', 'controller' => 'index', 'module' => 'admin'), 'default'); ?>">Admin</a></li>
+                    <li><a href="<?= $this->url(array('action' => 'index', 'controller' => 'users', 'module' => 'admin'), 'default'); ?>">Users Management</a></li>
+                    <li><a href="<?= $this->url(array('action' => 'index', 'controller' => 'email', 'module' => 'admin'), 'default'); ?>">Email Broadcast</a></li>
+                    <li><a href="<?= $this->url(array('action' => 'editor', 'controller' => 'email', 'module' => 'admin'), 'default'); ?>">Email Editor</a></li>
+                    <li><a href="<?= $this->url(array('action' => 'filter', 'controller' => 'index', 'module' => 'admin'), 'default'); ?>">Filter</a></li>
+                    <li><a href="<?= $this->url(array('action' => 'index', 'controller' => 'invites', 'module' => 'admin'), 'default'); ?>">Invites</a></li>
+                    <li><a href="<?= $this->url(array('action' => 'options', 'controller' => 'index', 'module' => 'admin'), 'default'); ?>">Options</a></li>
+                    <li><a href="<?= $this->url(array('action' => 'password', 'controller' => 'index', 'module' => 'admin'), 'default'); ?>">Password</a></li>
+                    <li><a href="<?= $this->url(array('action' => 'logout', 'controller' => 'index', 'module' => 'admin'), 'default'); ?>">Logout</a></li>
+                  </ul>
+                </nav>
+                <div class="clear"></div>
+                <? endif; ?>
+
+                <? if(isset($this->messages) && !empty($this->messages)): ?>
+                <div id="messages">
+                  <?php if(1 == count($this->messages)): ?>
+                    <span><?= current($this->messages); ?></span>
+                  <?php else: ?>
+                    <ul>
+                      <?php foreach($this->messages as $message): ?>
+                        <li><span><?php echo $message; ?></span></li>
+                      <?php endforeach; ?>
+                    </ul>
+                  <?php endif; ?>
+                </div>
+                <? endif; ?>
+
+                <?= $this->layout()->content; ?>
+                <div class="clear"></div>
+
+              </div>
+              <!-- END Content -->
+
+              <div class="cl">&nbsp;</div>
+          </div>
+      </div>
+      <!-- END Main part -->
+
+      <!-- Sticky footer -->
+      <div id="footer-push"></div>
+      <!-- END Sticky footer -->
+  </div>
+
+  <footer id="footer">
+    <p>Copyright &copy; buzzblaze</p>
+  </footer>
+
+  <?php echo $this->inlineScript(); ?>
+</body>
+</html>

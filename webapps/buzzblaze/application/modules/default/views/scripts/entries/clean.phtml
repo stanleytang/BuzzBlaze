@@ -1,0 +1,17 @@
+<div class="article">
+  <div class="top">
+    <h4><?= date('l, F j Y, g:i A', strtotime($this->feedEntry->getPublished())); ?></h4>
+    <h2><a href="<?php echo $this->feedEntry->getUrl(); ?>" rel="nofollow bookmark"><?= $this->feedEntry->getTitle(); ?></a></h2>
+    <h5><a href="<?= $this->url(array('feed_uuid' => $this->feedEntry->getFeed()->getUuid()), 'feed'); ?>"><?= $this->feedEntry->getFeed()->getTitle(); ?></a></h5>
+
+    <?php echo $this->partial('entries/_social.phtml', array('feedEntry' => $this->feedEntry)); ?>
+  </div>
+
+  <div class="middle">
+    <?= $this->feedEntry->getCleanContent(); ?>
+  </div>
+
+  <div class="bottom">
+    <?php echo $this->partial('entries/_social.phtml', array('feedEntry' => $this->feedEntry)); ?>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<?php $this->headTitle('Users Management'); ?>
+
+<h3>Users Management</h3>
+
+<form action="" method="post">
+  <table id="users">
+    <tr>
+      <th style="width: 32px">-</th>
+      <th style="width: 200px">Username</th>
+      <th style="width: 200px">Full Name</th>
+      <th style="width: 200px">Email</th>
+      <th style="width: 200px">Last Login</th>
+      <th style="width: 100px">Status</th>
+      <th style="width: 100px">--</th>
+    </tr>
+    <?php foreach($this->users as $user): ?>
+      <tr>
+        <td><input type="checkbox" name="users[]" value="<?php echo $user->getId(); ?>" /></td>
+        <td><?php echo $user->getUsername(); ?></td>
+        <td><?php echo $user->getFullname(); ?></td>
+        <td><?php echo $user->getEmail(); ?></td>
+        <td><?php echo ('0000-00-00 00:00:00' == $user->getLastLogin()) ? '-' : $this->RelativeDate(strtotime($user->getLastLogin())); ?></td>
+        <td><?php echo $user->getStatus(true); ?></td>
+        <td>
+          <a href="<?php echo $this->url(array('action' => 'edit', 'controller' => 'users', 'module' => 'admin'), 'default'); ?>?user_id=<?php echo $user->getId(); ?>">Edit</a>
+          <a class="user_stats" href="<?php echo $this->url(array('action' => 'statistics', 'controller' => 'users', 'module' => 'admin'), 'default'); ?>?user_id=<?php echo $user->getId(); ?>">Stats</a>
+        </td>
+      </tr>
+    <?php endforeach; ?>
+  </table>
+
+  <div id="controls">
+    <input type="submit" name="disable" value="Disable" />
+    <input type="submit" name="activated" value="Activated" />
+    <input type="submit" name="delete" value="Delete" />
+    <input type="submit" name="export_csv" value="Export as .csv" />
+  </div>
+</form>
+
+<script type="text/javascript">
+jQuery(function($) {
+
+  $('.user_stats').colorbox({
+    width: "300px",
+    scrolling:false,
+    onOpen:function() {
+      $("body").css("overflow", "hidden");
+    },
+    onClosed:function() {
+      $("body").css("overflow", "auto");
+    }
+  });
+
+});
+</script>

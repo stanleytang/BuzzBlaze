@@ -1,0 +1,35 @@
+<? $title = 'Statistics for ' . $this->user->getUsername(); ?>
+<? $this->headTitle($title); ?>
+
+<h1><?= $title; ?></h1>
+
+<div id="user_picture" class="grid_2">
+  <a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'profile'); ?>">
+    <div class="profile-img-avatar"><img src="<?php echo $this->user->profilePicture(); ?>" /></div>dfsa
+  </a>
+</div>
+
+<div id="user_info" class="grid_3">
+  <h4>
+    <a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'profile'); ?>">
+      <?php echo $this->user->getUsername(); ?>
+    </a>
+  </h4>
+  <h5><a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'user_feeds'); ?>"><?php echo $this->user->statistic('feeds'); ?> Blazes</a></h5>
+</div>
+<div class="clear"></div>
+
+<div id="user_stats">
+  <div><span>Following</span><a id="n_following" href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'following'); ?>"><?php echo $this->user->statistic('following'); ?></a></div>
+  <div><span>Followers</span><a id="n_followers" href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'followers'); ?>"><?php echo $this->user->statistic('followers'); ?></a></div>
+  <div><span>Likes</span><a  id="n_likes" href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'likes'); ?>"><?php echo $this->user->statistic('likes'); ?></a></div>
+</div>
+<div class="clear"></div>
+
+<div id="user_meta">
+  <p>
+    <strong>Name: </strong><?php echo $this->user->getFullName(); ?><br />
+    <strong>Website: </strong><a rel="me nofollow" href="<?php echo $this->user->getMeta('website'); ?>"><?php echo $this->user->getMeta('website'); ?></a><br />
+    <strong>Bio: </strong><?php echo $this->user->getMeta('bio'); ?>
+  </p>
+</div>

@@ -1,0 +1,40 @@
+<!-- Header -->
+<div id="header">
+    <div class="shell">
+        <h1 id="logo" class="left"><a href="<?= $this->url(array('action' => 'index', 'controller' => 'index', 'module' => 'default'), 'default'); ?>">BuzzBlaze</a></h1>
+
+        <!-- Navigation -->
+        <div id="navigation" class="left">
+            <ul>
+              <? if($this->IsLogged()): ?>
+                <li><a class="<?php echo $this->activeNav($this->url(array(), 'dashboard')); ?>" href="<?= $this->url(array(), 'dashboard'); ?>">Dashboard</a></li>
+                <li><a class="<?php echo $this->activeNav($this->url(array(), 'feeds')); ?>" href="<?= $this->url(array(), 'feeds'); ?>">Feeds</a></li>
+                <li><a class="<?php echo $this->activeNav($this->url(array('username' => Zend_Auth::getInstance()->getIdentity()), 'profile')); ?>" href="<?= $this->url(array('username' => Zend_Auth::getInstance()->getIdentity()), 'profile'); ?>">Profile</a></li>
+                <li><a href="#dd-accounts" class="link-dd<?php echo (preg_match('#\/settings\/#i', Zend_Controller_Front::getInstance()->getRequest()->getRequestUri())) ? ' active' : ''; ?>">Account</a></li>
+              <? else: ?>
+                <li><a class="<?php echo $this->activeNav($this->url(array('action' => 'index', 'controller' => 'index', 'module' => 'default'), 'default')); ?>" href="<?= $this->url(array('action' => 'index', 'controller' => 'index', 'module' => 'default'), 'default'); ?>">Home</a></li>
+                <li><a class="<?php echo $this->activeNav($this->url(array(), 'register')); ?>" href="<?= $this->url(array(), 'register'); ?>">Register</a></li>
+                <li><a href="<?= $this->url(array(), 'login'); ?>">Log-in</a></li>
+              <? endif; ?>
+            </ul>
+            <div class="cl">&nbsp;</div>
+        </div>
+        <!-- END Navigation -->
+
+        <?php if(Zend_Auth::getInstance()->hasIdentity()): ?>
+        <div class="box-search right">
+            <form action="/search" method="get">
+                <div>
+                    <input type="text" class="blink left" name="q" value="Search" title="Search" />
+                    <input type="submit" class="btn-search left notext" name="" value="Search" />
+                    <div class="cl">&nbsp;</div>
+                </div>
+            </form>
+        </div>
+        <?php endif; ?>
+
+        <div class="cl">&nbsp;</div>
+    </div>
+</div>
+<!-- END Header -->
+

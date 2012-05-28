@@ -1,0 +1,43 @@
+<? $this->headTitle($this->feed->getTitle()); ?>
+
+<div id="feed_entries">
+  <h1>
+    <img class="favicon" src="<?= $this->favicon($this->feed->getWebsite()); ?>" width="16" height="16" />
+    <a rel="nofollow" href="<?= $this->feed->getUrl(); ?>"><?= $this->escape($this->feed->getTitle()); ?></a>
+  </h1>
+
+  <div id="u_subscribebox">
+  <?php if(Zend_Registry::isRegistered('authUser')): ?>
+    <?php $authUser = Zend_Registry::get('authUser'); ?>
+    <?php if($authUser->isSubscribed($this->feed)): ?>
+      <span>Subscribed</span>
+    <?php else: ?>
+      <a class="ufeed_subscribe" href="javascript:;" data-feedid="<?php echo $this->feed->getId(); ?>">Subscribe</a>
+      <div class="subscribe">
+        <?php
+          $sform = new BuzzBlaze_Form_Subscribe();
+          $sform->getElement('feedurl')->setValue($this->feed->getUrl());
+          $pages = $sform->getElement('page');
+
+          foreach($authUser->pages() as $page) {
+            $pages->addMultiOption($page->getId(), $page->getName());
+          }
+
+          echo $sform->render();
+        ?>
+      </div>
+    <?php endif; ?>
+  <?php endif; ?>
+  </div>
+
+  <? foreach($this->paginator as $entry): ?>
+    <h3><a class="feed_entry" data-permalink="<?php echo $entry['entry_url']; ?>" title="<?= $entry['entry_title']; ?>" href="<?= $this->url(array('entry_uuid' => $entry['entry_uuid']), 'entry'); ?>"><?= $entry['entry_title']; ?></a></h3>
+    <p class="description">
+      <span class="entry_date"><?= $this->relativeDate(strtotime($entry['entry_published'])); ?></span>
+      - <?= $this->shortener(strip_tags($entry['entry_description']), 240); ?>
+    </p>
+  <? endforeach; ?>
+
+  <?php echo $this->paginationControl($this->paginator, 'Sliding', '_partial/pagination.phtml'); ?>
+</div>
+

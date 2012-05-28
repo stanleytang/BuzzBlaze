@@ -1,0 +1,25 @@
+<? $title = $this->user->getUsername() . '\'s subscriptions'; ?>
+<?php $this->headTitle($title); ?>
+
+<?php echo $this->partial('users/_profile_menu.phtml', array('user' => $this->user, 'active' => $this->active)); ?>
+
+<div id="content-inner" class="right">
+  <h1 class="pagetitle"><?php echo $title; ?></h1>
+  <ul class="results-list dynamic-list">
+    <? foreach($this->paginator as $item): ?>
+      <? if(null === $item['feed_uuid']) continue; ?>
+      <li>
+        <a href="<?php echo $this->url(array('feed_uuid' => $item['feed_uuid']), 'feed'); ?>">
+          <img src="<?= $this->favicon($item['feed_website']); ?>" width="16" height="16" class="left favicon" />
+        </a>
+        <div class="content">
+          <p><?php echo $item['feed_title']; ?></p>
+          <p class="meta"><a href="<?php echo $item['feed_url']; ?>"><?php echo $item['feed_url']; ?></a></p>
+        </div>
+        <a href="#" class="l-new">add</a>
+      </li>
+    <? endforeach; ?>
+  </ul>
+
+  <?php echo $this->paginationControl($this->paginator, 'Sliding', '_partial/pagination.phtml'); ?>
+</div>

@@ -1,0 +1,74 @@
+<?php
+$errors = $this->form->getMessages();
+$this->headTitle('Settings / Account');
+?>
+
+<?php echo $this->partial('settings/_settings_menu.phtml', array('active' => $this->active)); ?>
+
+<div id="content-inner" class="right">
+  <h1 class="pagetitle">Account Settings</h1>
+
+  <div class="gform_wrapper">
+    <form action="" method="post">
+      <input type="hidden" name="_method" value="ACCOUNT_INFO" id="_method" />
+      <div class="gform_body">
+        <ul class="gform_fields">
+          <li class="gfield gsection">
+            <label class="gfield_label">Username</label>
+            <div class="ginput_container">
+              <input type="text" name="username" id="field-username" class="medium left" value="<?php echo $this->authUser->getUsername(); ?>" title="" />
+              <?php echo $this->formError($errors, 'username'); ?>
+              <small class="left" style="padding: 3px 0 0 15px;">Only letters, numbers and '_'</small>
+              <div class="cl">&nbsp;</div>
+              <small>You can access your public profile at <span id="user-address">http://buzzblaze.com/<span><?php echo $this->authUser->getUsername(); ?></span></span></small>
+              <small>* You will need to re-login</small>
+            </div>
+
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield gsection">
+            <label class="gfield_label">Email</label>
+            <div class="ginput_container">
+              <input type="text" class="medium" name="email" value="<?php echo $this->authUser->getEmail(); ?>" title="" />
+              <?php echo $this->formError($errors, 'email'); ?>
+              <small>We will never share your email with anyone</small>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield gsection">
+            <label class="gfield_label">Language</label>
+            <div class="ginput_container">
+              <p>BuzzBlaze coming soon in your language!</p>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield gsection">
+            <label class="gfield_label">Time Zone</label>
+            <div class="ginput_container">
+              <?php echo $this->form->getElement('timezone')->setDecorators(array(array('ViewHelper'), array('Errors'))); ?>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="gform_footer">
+        <input type="submit" class="btn-save-changes" value="Save changes" title="Save changes" />
+      </div>
+    </form>
+  </div>
+
+  <?php $hasError = $this->delForm->getErrors('password'); ?>
+  <?php $display = (empty($hasError)) ? 'display: none' : ''; ?>
+  <a class="delete_account" href="javascript:;">Deactivate account</a>
+  <div id="delete_account_box" style="<?php echo $display; ?>">
+    <?php echo $this->delForm; ?>
+  </div>
+
+  <div class="cl">&nbsp;</div>
+
+
+</div>

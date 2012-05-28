@@ -1,0 +1,52 @@
+<?php $this->headTitle('Social News Reader (beta)'); ?>
+
+<div id="banner">
+  <div id="slider" class="left">
+    <ul>
+      <li><img src="/images/slide-image1.jpg" alt="" width="620" height="302"/></li>
+      <li><img src="/images/slide-image2.jpg" alt="" width="620" height="302"/></li>
+      <li><img src="/images/slide-image3.jpg" alt="" width="620" height="302"/></li>
+      <li><img src="/images/slide-image4.jpg" alt="" width="620" height="302"/></li>
+      <li><img src="/images/slide-image5.jpg" alt="" width="620" height="302"/></li>
+    </ul>
+    <div id="slider-overlay"></div>
+    <div class="slider-navigation">
+      <a href="#">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+    </div>
+  </div>
+
+  <div id="sign-up" class="right">
+    <h4>BuzzBlaze is currently in private beta.</h4>
+    <h2>Sign up for Early Access!</h2>
+    <p>Enter your email address to get invited.</p>
+
+    <div class="beta_access">
+      <div class="form-holder">
+        <form action="<?php echo $this->url(array(), 'default'); ?>" method="post">
+          <fieldset>
+            <div class="fieldElem">
+              <input id="email" type="text" name="email" class="blink" title="Enter your email to get early access" value="Enter your email to get early access" />
+            </div>
+            <input type="submit" class="submit-btn notext" />
+            <div class="cl">&nbsp;</div>
+          </fieldset>
+        </form>
+      </div>
+
+      <h3 class="thanks-msg">Thank you for your patience.<br />We hope to see you on <strong>BuzzBlaze</strong> soon!</h3>
+    </div>
+
+    <div class="social-links">
+      <h4>Keep up with <strong>BuzzBlaze</strong> on:</h4>
+      <a href="http://twitter.com/buzzblaze" target="_blank" class="twitter"></a>
+      <a href="http://facebook.com/buzzblaze" class="facebook"></a>
+      <div class="cl">&nbsp;</div>
+    </div>
+
+  </div>
+  <div class="cl">&nbsp;</div>
+</div>

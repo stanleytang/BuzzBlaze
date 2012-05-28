@@ -1,0 +1,22 @@
+# environment
+SetEnv APPLICATION_ENV production
+
+# mod_rewrite
+RewriteEngine On
+
+# forward www to non-www
+RewriteCond %{HTTP_HOST} ^www.buzzblaze.com$ [NC]
+RewriteRule ^(.*)$ http://buzzblaze.com/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript text/javascript application/javascript application/json 
+</IfModule>
+
+Header unset ETag
+FileETag None

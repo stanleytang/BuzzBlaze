@@ -1,0 +1,13 @@
+<? $title = 'People who follow ' . $this->user->getUsername(); ?>
+<?php $this->headTitle($title); ?>
+
+<?php echo $this->partial('users/_user_menu.phtml', array('user' => $this->user, 'active' => $this->active)); ?>
+
+<div id="content-inner" class="right">
+  <h1 class="pagetitle">Followers (<a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'followers'); ?>"><?php echo $this->user->statistic('followers'); ?></a>)</h1>
+  <ul class="friends-list dynamic-list">
+    <?= $this->partialLoop('_partial/userlist.phtml', $this->paginator); ?>
+  </ul>
+
+  <?php echo $this->paginationControl($this->paginator, 'Sliding', '_partial/pagination.phtml'); ?>
+</div>

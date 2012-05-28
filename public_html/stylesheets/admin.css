@@ -1,0 +1,41 @@
+#adminnav ul {
+    margin: 0px 0px 8px 0px;
+    border-bottom: solid 2px #aaa;
+    padding-bottom: 8px;
+}
+
+#adminnav li {
+    margin: 0px 8px;
+    display: inline;
+}
+
+#email_hints {
+    background: #eee;
+    padding: 4px 20px;
+    margin: 8px;
+}
+
+#email_hints h5 {
+    font-style: italic;
+    font-weight: bold;
+}
+
+#email_hints li {
+    list-style: none;
+    margin: 0px;
+}
+
+#recipients-element {
+    height: 120px;
+    overflow: auto;
+}
+
+#overal_stats {
+    font-size: 1.3em;
+    color: #333
+}
+
+#overal_stats strong {
+    color: #3b6c13;
+    font-size: 1.4em;
+}

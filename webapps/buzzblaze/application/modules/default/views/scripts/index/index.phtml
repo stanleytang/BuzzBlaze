@@ -1,0 +1,70 @@
+<?php $this->headTitle('Buzzblaze'); ?>
+
+<div id="banner">
+  <div id="slider" class="left">
+
+    <ul>
+      <li><img src="/images/slide-image1.jpg" alt="" width="620" height="302"/></li>
+      <li><img src="/images/slide-image2.jpg" alt="" width="620" height="302"/></li>
+      <li><img src="/images/slide-image3.jpg" alt="" width="620" height="302"/></li>
+      <li><img src="/images/slide-image4.jpg" alt="" width="620" height="302"/></li>
+      <li><img src="/images/slide-image5.jpg" alt="" width="620" height="302"/></li>
+    </ul>
+
+    <div id="slider-overlay"></div>
+    <div class="slider-navigation">
+      <a href="#">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+    </div>
+  </div>
+  <!-- end of slider -->
+
+  <div id="sign-up" class="right">
+    <h4>New to BuzzBlaze?</h4>
+    <h2>Sign Up</h2>
+    <p>It's free and takes less than a minute!</p>
+
+    <div class="sign-up-form">
+      <form action="<?php echo $this->url(array(), 'register'); ?>" method="post">
+        <div class="row">
+          <label>Full name</label>
+          <input type="text" name="full_name" class="field" value="" title="" />
+        </div>
+
+        <div class="row">
+          <label>Username</label>
+          <input type="text" name="username" class="field" value="" title="" />
+        </div>
+
+        <div class="row">
+          <label>Email address</label>
+          <input type="text" name="email" class="field" value="" title="" />
+        </div>
+
+        <div class="row">
+          <label>Password</label>
+          <input type="password" name="password" class="field" value="" title="" />
+        </div>
+
+        <div class="row">
+          <label>Confirm Password</label>
+          <input type="password" name="password_confirm" class="field" value="" title="" />
+        </div>
+
+        <div class="submit-row">
+          <input type="submit" class="submit notext" value="Submit" title="" />
+        </div>
+      </form>
+    </div>
+
+    <small>By clicking on submit, you confirm that you accept the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a> for using BuzzBlaze.</small>
+
+  </div>
+  <!-- end of sign-up -->
+
+  <div class="cl">&nbsp;</div>
+</div>
+

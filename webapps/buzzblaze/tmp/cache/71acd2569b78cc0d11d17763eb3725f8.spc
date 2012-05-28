@@ -1,0 +1,1 @@
+a:3:{s:3:"url";s:38:"http://willcomtogether.blog86.fc2.com/";s:8:"feed_url";s:42:"http://willcomtogether.blog86.fc2.com/?xml";s:5:"build";s:14:"20110128231735";}

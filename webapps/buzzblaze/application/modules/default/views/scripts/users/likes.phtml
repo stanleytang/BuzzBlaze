@@ -1,0 +1,27 @@
+<? $title = 'Entries liked by ' . $this->user->getUsername(); ?>
+<?php $this->headTitle($title); ?>
+
+<?php echo $this->partial('users/_profile_menu.phtml', array('user' => $this->user, 'active' => $this->active)); ?>
+
+<div id="content-inner" class="right">
+  <h1 class="pagetitle"><?php echo $title; ?></h1>
+  <ul class="results-list dynamic-list">
+    <? foreach($this->paginator as $item): ?>
+      <? if(null === $item['feed_uuid']) continue; ?>
+      <li>
+        <a href="<?php echo $this->url(array('entry_uuid' => $item['entry_uuid']), 'entry'); ?>">
+          <img src="<?= $this->favicon($item['feed_website']); ?>" width="16" height="16" class="left favicon" />
+        </a>
+        <div class="content">
+          <p><a class="feed_entry" href="<?php echo $this->url(array('entry_uuid' => $item['entry_uuid']), 'entry'); ?>"><?php echo $item['entry_title']; ?></a></p>
+          <p class="meta">
+            <a class="source" href="<?= $this->url(array('feed_uuid' => $item['feed_uuid']), 'feed'); ?>"><?= parse_url($item['feed_website'], PHP_URL_HOST); ?></a> -
+            <?= $this->shortener(strip_tags($item['entry_description']), 200); ?>
+          </p>
+        </div>
+      </li>
+    <? endforeach; ?>
+  </ul>
+
+  <?php echo $this->paginationControl($this->paginator, 'Sliding', '_partial/pagination.phtml'); ?>
+</div>

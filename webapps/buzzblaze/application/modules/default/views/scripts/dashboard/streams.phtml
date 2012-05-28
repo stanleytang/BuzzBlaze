@@ -1,0 +1,7 @@
+<h3>Social Streams</h3>
+
+<ul id="social" class="social_streams">
+  <?= $this->partialLoop('dashboard/_stream.phtml', $this->paginator); ?>
+</ul>
+
+<?php echo $this->paginationControl($this->paginator, 'Sliding', '_partial/pagination.phtml'); ?>

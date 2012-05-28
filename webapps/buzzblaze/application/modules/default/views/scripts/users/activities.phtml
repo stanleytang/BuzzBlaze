@@ -1,0 +1,13 @@
+<? $title = ucfirst($this->user->getFullName()) . '\'s Recent Activity'; ?>
+<?php $this->headTitle($title); ?>
+
+<?php echo $this->partial('users/_profile_menu.phtml', array('user' => $this->user, 'active' => $this->active)); ?>
+
+<div id="content-inner" class="right">
+  <h1 class="pagetitle"><?php echo $title; ?></h1>
+  <ul id="social" class="dynamic-list">
+    <?= $this->partialLoop('users/_activity.phtml', $this->paginator); ?>
+  </ul>
+
+  <?php echo $this->paginationControl($this->paginator, 'Sliding', '_partial/pagination.phtml'); ?>
+</div>

@@ -1,0 +1,30 @@
+<li>
+  <span class="socials">
+   
+	<a href="javascript:void(0);" onclick="window.open('http://twitter.com/share?related=stanleytang%3ACo-Founder%20of%20BuzzBlaze.com&text=<?php echo $this->entry_title; ?>&url=http://www.buzzblaze.com<?php echo $this->url(array('entry_uuid' => $this->entry_uuid), 'entry'); ?>&via=buzzblaze','', 'width=550, height=300, location=no, menubar=no, status=no,toolbar=no, scrollbars=no, resizable=no')"; class="ico-twitter notext">Twitter</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+  <a href="javascript:void(0);" onclick="window.open('http://www.facebook.com/share.php?u=http://www.buzzblaze.com<?php echo $this->url(array('entry_uuid' => $this->entry_uuid), 'entry'); ?>&amp;t=<?php echo $this->entry_title; ?>','', 'width=550, height=300, location=no, menubar=no, status=no,toolbar=no, scrollbars=no, resizable=no')"; class="ico-facebook notext">Facebook</a>
+
+
+
+
+    <a href="mailto:?subject=<?php echo $this->entry_title; ?>" class="ico-mail notext">Email</a>
+    <? if($this->isLogged()): ?>
+      <?php $isLiked = $this->isLiked($this->entry_ID); ?>
+      <a onclick="like_entry(this); return false;" href="<?php echo $this->url(array('entry_uuid' => $this->entry_uuid), 'entry'); ?>" class="<?= ($isLiked) ? 'ico-star ico-starred unlike_entry' : 'ico-star like_entry'; ?> notext">Star</a>
+    <? endif; ?>
+  </span>
+
+  <? $entryThumb = $this->contentThumb($this->entry_content); ?>
+  <a class="feed_entry" data-permalink="<?php echo $this->entry_url; ?>" title="<?= $this->entry_title; ?>" id="e_<?= $this->entry_uuid; ?>"
+    href="<?php echo $this->url(array('entry_uuid' => $this->entry_uuid), 'entry'); ?>">
+    <img class="entry_thumb" src="<?= ('' != $entryThumb) ? $entryThumb : '/images/placeholder.gif'; ?>" style="width: 139px" alt="<?php echo $this->entry_title; ?>" />
+    <span class="overlay"><?php echo $this->shortener($this->entry_title, 45); ?></span>
+    <span class="zoom"></span>
+  </a>
+
+  <? if($this->isLogged()): ?>
+    <?php $isLiked = $this->isLiked($this->entry_ID); ?>
+    <a onclick="like_entry(this); return false;" href="<?php echo $this->url(array('entry_uuid' => $this->entry_uuid), 'entry'); ?>" class="<?= ($isLiked) ? 'notext ico-star ico-starred unlike_entry' : 'notext ico-star like_entry'; ?> notext">Star</a>
+  <? endif; ?>
+</li>

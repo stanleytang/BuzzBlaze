@@ -1,0 +1,9 @@
+<div id="menu">
+  <ul>
+    <li class="<?php echo $this->activeMenu('account'); ?>"><a href="<?php echo $this->url(array('action' => 'account', 'controller' => 'settings'), 'default'); ?>"><span>Account</span></a></li>
+    <li class="<?php echo $this->activeMenu('password'); ?>"><a href="<?php echo $this->url(array('action' => 'password', 'controller' => 'settings'), 'default'); ?>"><span>Password</span></a></li>
+    <li class="<?php echo $this->activeMenu('profile'); ?>"><a href="<?php echo $this->url(array('action' => 'profile', 'controller' => 'settings'), 'default'); ?>"><span>Profile</span></a></li>
+    <li class="<?php echo $this->activeMenu('notifications'); ?>"><a href="<?php echo $this->url(array('action' => 'notifications', 'controller' => 'settings'), 'default'); ?>"><span>Notifications</span></a></li>
+  </ul>
+</div>
+

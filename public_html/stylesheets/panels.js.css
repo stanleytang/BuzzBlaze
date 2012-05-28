@@ -1,0 +1,115 @@
+/* JS-Enabled CSS */
+
+.widget-head a.remove  {
+    float: right;
+    display: inline;
+    background: url(/images/buttons.gif) no-repeat -24px 0;
+    width: 14px;
+    height: 14px;
+    margin: 8px 10px 8px 0;
+    text-indent: -9999em;
+    outline: none;
+}
+
+.widget-head a.edit {
+    float: right;
+    display: inline;
+    background: url(/images/buttons.gif) no-repeat;
+    width: 24px;
+    height: 14px;
+    text-indent: -9999em;
+    margin: 8px 2px 8px 4px;
+    outline: none;
+}
+
+.widget-head a.collapse  {
+    float: right;
+    display: inline;
+    background: url(/images/buttons.gif) no-repeat -52px 0;
+    width: 14px;
+    height: 14px;
+    text-indent: -9999em;
+    margin: 8px 4px 8px 2px;
+    outline: none;
+}
+
+.widget-head a.refresh {
+    float: right;
+    display: inline;
+    background: url(/images/buttons.gif) no-repeat -66px 0;
+    width: 14px;
+    height: 14px;
+    text-indent: -9999em;
+    margin: 8px 2px 8px 4px;
+    outline: none;
+}
+
+.widget-head a.addthis {
+    float: right;
+    display: none;
+    background: url(/images/button-add-this.gif) no-repeat;
+    width: 56px;
+    height: 14px;
+    text-indent: -9999em;
+    margin: 8px 2px 8px 4px;
+    outline: none;
+}
+
+.list-view { background: url(/images/view-type_01.gif); width: 25px; height: 21px; float: left; text-indent: -9999em; position: relative; }
+.grid-view { background: url(/images/view-type_02.gif); width: 25px; height: 21px; float: left; text-indent: -9999em; position: relative; }
+.list-view:hover,
+.grid-view:hover { background-position: 0 -21px; text-decoration: none; color: #6b6b6b; }
+.view .active { background-position: 0 -42px; }
+
+.grid-view .tooltip,
+.list-view .tooltip { text-indent: 0; position: absolute; top: -19px; right: 5px; text-align: center; background: url(/images/tooltip.gif); width: 39px; height: 22px; line-height: 17px; font-size: 12px; text-align: center; display: none; color: #6b6b6b; }
+
+.widget-placeholder { border: 2px dashed #999; margin: 0 10px 20px; }
+
+.edit-box {
+    overflow: hidden;
+    background: url(/images/edit-overlay.png);
+    margin-bottom: 2px;
+    padding: 10px 0;
+    position: absolute;
+    height: 148px;
+    width: 656px;
+    top: 32px;
+    left: 2px;
+    z-index: 10000;
+}
+
+.w-small .edit-box { width: 316px; height: 152px; }
+
+.edit-box li.item {
+    padding: 7px 0;
+    position: relative;
+    height: 20px;
+    float: left;
+    clear: both;
+    width: 100%;
+}
+
+.edit-box h3 { padding-left: 24px; padding-bottom: 10px; }
+
+.edit-box label {
+    float: left;
+    width: 96px;
+    color: #FFF;
+    padding: 0 0 0 24px;
+    font-size: 14px;
+}
+.edit-box input { width: 165px; }
+
+.edit-box ul.colors { float: left; display: inline; }
+.edit-box ul.colors li {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #EEE;
+    float: left;
+    display: inline;
+    margin: 0 5px 0 0;
+    cursor: pointer;
+}
+
+.add-feed { background: url(/images/buttons.gif) -135px 0 no-repeat; width: 54px; height: 14px; float: right; margin: 8px 0 0; display: none; }

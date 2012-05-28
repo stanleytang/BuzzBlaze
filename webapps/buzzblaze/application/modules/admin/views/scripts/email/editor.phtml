@@ -1,0 +1,30 @@
+<div id="email_editor" class="grid_16">
+  <h3>Email Editor</h3>
+
+  <div class="grid_4">
+    <ul>
+    <?php foreach($this->emails as $email): ?>
+      <li><a href="?event=<?php echo $email->getEvent(); ?>"><?php echo ucwords(str_replace('_', ' ', $email->getEvent())); ?></a></li>
+    <?php endforeach; ?>
+    </ul>
+  </div>
+
+  <?php if(isset($this->form)): ?>
+    <div class="grid_10">
+      <div id="email_hints">
+        <h5>Hints</h5>
+        <ul>
+          <li><code>%username%</code> : User username</li>
+          <li><code>%fullname%</code> : User full name</li>
+          <li><code>%profile_url%</code> : User profile Url</li>
+          <li><code>%follower_username%</code> : Follower username</li>
+          <li><code>%follower_fullname%</code> : Follower full name</li>
+          <li><code>%follower_profile_url%</code> : Follower profile Url</li>
+          <li><code>%confirm_url%</code> : Confirmation Url</li>
+          <li><code>%reset_url%</code> : Reset Url</li>
+        </ul>
+      </div>
+      <?php echo $this->form; ?>
+    </div>
+  <?php endif; ?>
+</div>

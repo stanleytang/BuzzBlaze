@@ -1,0 +1,27 @@
+<!-- User info -->
+<div class="box user-info">
+    <ul>
+        <li class="avatar left">
+          <a href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'profile'); ?>">
+            <div class="profile-img-avatar"><img src="<?php echo $this->authUser->profilePicture(true); ?>" /></div>
+          </a>
+        </li>
+        <li class="section left">
+          <a id="n_following" href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'following'); ?>">
+            <?php echo $this->authUser->statistic('following'); ?>
+          </a> Following
+        </li>
+        <li class="section left">
+          <a id="n_followers" href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'followers'); ?>">
+            <?php echo $this->authUser->statistic('followers'); ?>
+          </a> Followers
+        </li>
+        <li class="section left">
+          <a id="n_likes" href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'likes'); ?>">
+            <?php echo $this->authUser->statistic('likes'); ?>
+          </a> Likes
+        </li>
+    </ul>
+    <div class="cl">&nbsp;</div>
+</div>
+<!-- END User info -->

@@ -1,0 +1,33 @@
+<?php
+$class = '';
+$output = null;
+$fullname = $this->full_name;
+if(' ' == $fullname) {
+  $fullname = $this->username;
+}
+
+switch($this->event) {
+  case 'like':
+    $class = 'ico-like';
+    $output = 'likes <a class="feed_entry" href="/entry/' . $this->object_uuid . '">' . $this->object_title . '</a>'
+      . ' on <a href="' . $this->url(array('feed_uuid' => $this->feed_uuid), 'feed') . '">' . $this->feed_title . '</a>';
+    break;
+
+  case 'add_feed':
+    $class = 'ico-rss';
+    $output = 'added <a href="/feed/' . $this->object_uuid . '">' . $this->object_title . '</a>'
+      . ' to his/her dashboard';
+    break;
+
+}
+?>
+
+<?php if(null !== $output): ?>
+  <li class="<?= $class; ?>">
+    <span></span>
+    <a href="/<?= $this->username; ?>"><?= $fullname; ?></a> <?= $output; ?>
+    <span class="small"><?= $this->relativeDate(strtotime($this->created)); ?></span>
+  </li>
+<?php else: ?>
+  <h3>Follow your friends to see what’s Buzzing!</h3>
+<? endif; ?>

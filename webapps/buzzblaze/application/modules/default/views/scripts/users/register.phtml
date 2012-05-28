@@ -1,0 +1,119 @@
+<?php
+$errors = $this->form->getMessages();
+?>
+
+<? if(isset($this->register_success)): ?>
+  <? $this->headTitle('Confirmation Required.'); ?>
+
+  <h3>Confirmation Required</h3>
+  <p>You've successfully registered with us! To confirm your account, please check your inbox.<br />
+Not receiving an email? Remember to check your spam folder. Sometimes our emails get lost in there :(</p>
+
+<? else: ?>
+
+  <? $this->headTitle('Registration'); ?>
+
+  <div id="sign-up-box" class="modal-box">
+
+    <div class="head">
+      Sign Up for BuzzBlaze 
+    </div>
+
+    <div class="body">
+
+      <div class="gform_wrapper">
+
+        <form id="registration" enctype="application/x-www-form-urlencoded" method="post" action="/register">
+          <?php
+            echo $this->form->getElement('_invite_code');
+          ?>
+
+          <ul class="gform_fields">
+
+            <li class="gfield">
+              <label class="gfield_label gfield_label_medium">Full name</label>
+              <div class="ginput_container">
+                <input name="full_name" type="text" class="medium left field-fullname" value="<?= $this->form->getElement('full_name')->getValue(); ?>" title="Enter your first and last name" />
+                <p class="control-bar left">
+                  Enter your first and last name
+                </p>
+                <div class="cl">&nbsp;</div>
+                <small>Your full name will appear on your public profile</small>
+              </div>
+              <div class="cl">&nbsp;</div>
+            </li>
+
+            <li class="gfield">
+              <label class="gfield_label gfield_label_medium">Username</label>
+              <div class="ginput_container">
+                <input type="text" id="field-username" name="username" class="medium left field-username" value="<?= $this->form->getElement('username')->getValue(); ?>" title="Pick a unique username" />
+                <p class="control-bar left">
+                  Pick a unique username
+                </p>
+                <div class="cl">&nbsp;</div>
+                <small>Your public profile is <span id="user-address">http://buzzblaze.com/<span >username</span></span></small>
+              </div>
+              <div class="cl">&nbsp;</div>
+            </li>  
+
+            <li class="gfield">
+              <label class="gfield_label gfield_label_medium">Email</label>
+              <div class="ginput_container">
+                <input id="field-email" name="email" type="text" class="medium left field-email" value="<?= $this->form->getElement('email')->getValue(); ?>" title="Enter your real email address" />
+                <p class="control-bar left">
+                  Enter your real email address
+                </p>
+                <div class="cl">&nbsp;</div>
+                <small>Email will not be publicly shared</small>
+              </div>
+              <div class="cl">&nbsp;</div>
+            </li>  
+
+            <li class="gfield">
+              <label class="gfield_label gfield_label_medium">New Password</label>
+              <div class="ginput_container">
+                <input id="field-password" name="password" type="password" class="medium left field-password" value="<?= $this->form->getElement('password')->getValue(); ?>" title="6 characters or more" />
+                <p class="control-bar left">
+                  6 characters or more
+                </p>
+                <div class="cl">&nbsp;</div>
+              </div>
+              <div class="cl">&nbsp;</div>
+            </li>        						      						      						
+
+            <li class="gfield">
+              <label class="gfield_label gfield_label_medium">Confirm Password</label>
+              <div class="ginput_container">
+                <input id="field-password_confirm" name="password_confirm" type="password" class="medium left field-confirm-password" value="" title="Re-type your password" />
+                <p class="control-bar left">&nbsp;</p>
+                <div class="cl">&nbsp;</div>
+              </div>
+              <div class="cl">&nbsp;</div>
+            </li>
+
+            <li class="gfield">
+            <label class="gfield_label gfield_label_medium">Verification</label>
+            <div class="ginput_container">
+              <?php echo $this->form->getElement('captcha'); ?>
+              <p class="control-bar left">&nbsp;</p>
+              <div class="cl">&nbsp;</div>
+            </div>
+            <div class="cl">&nbsp;</div>
+            </li>
+
+
+            <li class="gfield" id="agreement">
+              <p style="width: 375px; line-height: 1; padding: 0 0 0 135px;"><small>By clicking on "Sign Up" below, you are confirming that you accept the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a> for using BuzzBlaze.</small></p>
+            </li>
+        </ul>
+
+        <div class="gform_footer">
+          <input id="btn-signup" type="submit" class="btn-signup" value="Sign Up" />
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<? endif; ?>

@@ -1,0 +1,47 @@
+<?= $this->doctype(); ?>
+<html>
+<head>
+  <?= $this->partial('_partial/assets.phtml'); ?>
+  <?= $this->partial('_partial/assets_panel.phtml'); ?>
+  <?= $this->partial('_partial/head.phtml'); ?>
+</head>
+<body>
+  <div id="wrap">
+
+      <div id="header">
+        <div class="shell">
+          <h1 id="logo-big" class="left"><a href="<?php echo $this->url(array(), 'default'); ?>">BuzzBlaze</a></h1>
+          <div class="cl">&nbsp;</div>
+        </div>
+      </div>
+
+      <!-- Main part -->
+      <div id="main">
+          <div class="shell">
+
+            <!-- Flash messages -->
+            <? if(isset($this->messages) && !empty($this->messages)): ?>
+            <div id="messages">
+              <span><?= current($this->messages); ?></span>
+            </div>
+            <? else: ?>
+            <div id="messages" style="display: none;"></div>
+            <? endif; ?>
+            <!-- END Flash messages -->
+
+            <?= $this->layout()->content; ?>
+            <div class="cl">&nbsp;</div>
+
+          </div>
+      </div>
+      <!-- END Main part -->
+
+      <!-- Sticky footer -->
+      <div id="footer-push"></div>
+      <!-- END Sticky footer -->
+  </div>
+
+  <?= $this->partial('_partial/footer.phtml'); ?>
+
+</body>
+</html>

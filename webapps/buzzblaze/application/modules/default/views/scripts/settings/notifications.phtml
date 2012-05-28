@@ -1,0 +1,42 @@
+<?php $this->headTitle('Settings / Notifications'); ?>
+<?php echo $this->partial('settings/_settings_menu.phtml', array('active' => $this->active)); ?>
+
+<div id="content-inner" class="right">
+<h1 class="pagetitle">Notifications Settings</h1>
+
+  <div class="gform_wrapper">
+    <form action="" method="post">
+      <input type="hidden" name="_method" value="NOTIFICATION" id="_method" />
+
+      <div class="gform_body">
+        <ul class="gform_fields">
+          <li class="gfield gsection">
+            <label class="gfield_label">New followers</label>
+            <div class="ginput_container">
+              <label class="with_input">
+                <?php echo $this->form->getElement('email_follow')->setDecorators(array(array('ViewHelper'), array('Errors'))) ->setAttrib('class', 'checkbox'); ?>
+                Let me know by email when someone starts following me
+              </label>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield gsection">
+            <label class="gfield_label">BuzzBlaze</label>
+            <div class="ginput_container">
+              <label class="with_input">
+                <?php echo $this->form->getElement('email_updates')->setDecorators(array(array('ViewHelper'), array('Errors'))) ->setAttrib('class', 'checkbox'); ?>
+                Get updated on the latest BuzzBlaze news
+              </label>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="gform_footer">
+        <input type="submit" class="btn-save-changes" value="Save changes" title="Save changes" />
+      </div>
+    </form>
+  </div>
+</div>

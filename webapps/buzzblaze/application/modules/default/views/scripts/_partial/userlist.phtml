@@ -1,0 +1,25 @@
+<li>
+  <a href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'profile'); ?>" class="left">
+    <div class="profile-img"><img src="<?php echo $this->model->profilePicture(); ?>" alt="<?php echo $this->model->getUsername(); ?>" /></div>
+  </a>
+
+  <div class="content">
+
+    <?php $auth = Zend_Auth::getInstance(); ?>
+    <?php if($auth->hasIdentity()): ?>
+      <?php if ($auth->getIdentity() == $this->model->getUsername()): ?>
+        <span class="itsyou"></span>
+      <?php else: ?>
+        <?php $authUser = Zend_Registry::get('authUser'); ?>
+        <?php if($authUser->isFollowing($this->model)): ?>
+          <a class="unfollow_user l-follow following notext" rel="nofollow" href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'profile'); ?>">Unfollow</a>
+        <?php else: ?>
+          <a class="follow_user l-follow notext" rel="nofollow" href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'profile'); ?>">Follow</a>
+        <?php endif; ?>
+      <?php endif; ?>
+    <?php endif; ?>
+
+    <p><?php echo $this->model->getFullName(); ?></p>
+    <p class="meta"><a href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'profile'); ?>"><?php echo $this->model->getUsername(); ?></a></p>
+  </div>
+</li>

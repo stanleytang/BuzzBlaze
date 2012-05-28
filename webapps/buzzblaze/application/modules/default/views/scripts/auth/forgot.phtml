@@ -1,0 +1,27 @@
+<?php $this->headTitle('Forgot Password'); ?>
+
+<div id="lost-password" class="modal-box">
+  <div class="head">Lost your password?</div>
+  <div class="body">
+    <form action="<?php echo $this->url(array(), 'forgot'); ?>" method="post">
+      <div class="gform_wrapper">
+        <ul class="gform_fields">
+          <li class="gfield">
+            <label class="gfield_label">Username / Email Address</label>
+            <div class="ginput_container">
+              <br />
+              <input type="text" name="identity" class="medium" value="" title="" />
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+        </ul>
+
+        <div class="gform_footer">
+          <input type="submit" class="btn-retrieve-pass" value="Retrieve Password" title="Retrieve Password" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<p class="tc blue">Nevermind, I remember now. <a href="javascript:history.go(-1)">Go Back</a></p>

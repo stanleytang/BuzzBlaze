@@ -1,0 +1,29 @@
+.w-small { display: inline; }
+
+#columns { }
+#columns ul { height: 100%; }
+
+.item-scroller li { font-size: 0; line-height: 0; }
+.item-scroller a { font-size: 11px; line-height: 19px; position: relative; }
+
+.carousel a .overlay { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/overlay.png', sizingMethod='scale'); }
+.carousel a .zoom { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/zoom.png', sizingMethod='image'); }
+.edit-box { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/edit-overlay.png', sizingMethod='scale'); }
+
+.carousel li { margin: 0 2px !important; }
+
+.ie-widget { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/shadow.png', sizingMethod='scale'); }
+
+.item-scroller .ico-star { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/ico-star-grey.png', sizingMethod='image'); }
+
+.w-big .carousel .jcarousel-prev { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/carousel-prev.png', sizingMethod='image'); }
+.w-big .carousel .jcarousel-next { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/carousel-next.png', sizingMethod='image'); }}
+.w-big .carousel .jcarousel-prev-disabled { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/carousel-prev-inact.png', sizingMethod='image'); }
+.w-big .carousel .jcarousel-nex-disabled { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/carousel-next-inact.png', sizingMethod='image'); }
+
+.socials { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/bg-slide-socials.png', sizingMethod='scale'); }
+
+.socials .ico-twitter { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/ico-twitter.png', sizingMethod='image'); }
+.socials .ico-facebook { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/ico-facebook.png', sizingMethod='image'); }
+.socials .ico-mail { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/ico-email.png', sizingMethod='image'); }
+.socials .ico-star { background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/ico-star.png', sizingMethod='image'); }

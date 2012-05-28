@@ -1,0 +1,37 @@
+<?php $this->headTitle('Login'); ?>
+
+<div id="user-login" class="modal-box" style="width:500px;margin:20px 0 0 220px;">
+  <div class="head">Login</div>
+  <div class="body">
+    <form action="<?php echo $this->url(array(), 'login'); ?>" method="post">
+      <div class="gform_wrapper">
+        <ul class="gform_fields">
+          <li class="gfield">
+            <label class="gfield_label">Username or email</label>
+            <div class="ginput_container">
+              <br />
+              <input name="identity" type="text" class="medium" value="" title="" />
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+          <li class="gfield">
+            <label class="gfield_label">Password</label>
+            <div class="ginput_container">
+              <input name="password" type="password" class="medium" value="" title="" />
+              <br />
+              <label class="left"><input type="checkbox" class="checkbox" value="" title="" /> Remember Me</label><br />
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+        </ul>
+
+        <div class="gform_footer">
+          <input type="submit" class="submit notext" value="LOGIN" title="LOGIN" style="margin-left:-25px;" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<p class="tc blue"><a href="<?php echo $this->url(array(), 'forgot'); ?>">Forgot password?</a></p>
+

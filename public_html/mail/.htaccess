@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^mail.buzzblaze.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www.mail.buzzblaze.com$
+RewriteRule ^/?$ "http\:\/\/mail\.google\.com\/a\/buzzblaze\.com" [R=301,L]
+

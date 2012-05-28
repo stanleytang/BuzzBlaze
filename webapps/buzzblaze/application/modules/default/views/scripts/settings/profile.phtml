@@ -1,0 +1,154 @@
+<?php
+$errors = $this->profileForm->getMessages();
+$this->headTitle('Settings / Profile');
+?>
+<?php echo $this->partial('settings/_settings_menu.phtml', array('active' => $this->active)); ?>
+
+<div id="content-inner" class="right">
+  <h1 class="pagetitle">Profile Settings</h1>
+
+  <div class="gform_wrapper">
+    <form action="" method="post" enctype="multipart/form-data">
+      <div class="gform_body">
+        <ul class="gform_fields">
+          <li class="gfield gsection">
+            <div class="profile-img"><img class="avatar" src="<?php echo $this->authUser->profilePicture(); ?>" /></div>
+
+            <div class="ginput_container">
+              <p>Profile Picture (Max 2MB, JPG/JPEG/PNG)</p>
+
+              <div class="input-file">
+                <a href="#">Choose File</a>
+                <span class="text">No file chosen</span>
+
+                <input type="hidden" name="_method" value="PROFILE_PICTURE" id="_method" />
+                <input type="hidden" name="MAX_FILE_SIZE" value="2097152" id="MAX_FILE_SIZE" />
+                <input type="file" class="file" name="picture" value="" title="" />
+
+              </div>
+
+              <p><a href="?_method=DELETE_PROFILE_PICTURE">Delete picture</a></p>
+            </div>
+
+            <div class="cl">&nbsp;</div>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="gform_footer">
+        <input type="submit" class="btn-save-changes" value="Save changes" title="Save changes" />
+      </div>
+    </form>
+
+    <hr style="margin: 20px; border: none; border-bottom: solid 1px #ddd;" />
+
+    <form action="" method="post">
+      <input type="hidden" name="_method" value="PROFILE" id="_method" />
+
+      <div class="gform_body">
+        <ul class="gform_fields">
+          <li class="gfield gsection">
+            <label class="gfield_label">Full Name</label>
+            <div class="ginput_container">
+              <input type="text" name="fullname" class="medium" value="<?php echo $this->authUser->getFullName(); ?>" title="" />
+              <?php echo $this->formError($errors, 'fullname'); ?>
+              <small>Enter your real name so people you know can find you on BuzzBlaze</small>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield gsection">
+            <label class="gfield_label">Location</label>
+            <div class="ginput_container">
+              <input type="text" name="location" class="medium" value="<?php echo $this->authUser->getMeta('location'); ?>" title="" />
+              <small>Where are you from?</small>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield gsection">
+            <label class="gfield_label">Website</label>
+            <div class="ginput_container">
+              <input type="text" name="website" class="medium" value="<?php echo $this->authUser->getMeta('website'); ?>" title="" />
+              <?php echo $this->formError($errors, 'website'); ?>
+              <small>Got a homepage or blog? Share it here!</small>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield gsection">
+            <label class="gfield_label">Gender</label>
+            <div class="ginput_container gender">
+              <?php echo $this->profileForm->getElement('gender')
+              ->setDecorators(array(
+                array('ViewHelper'),
+                array('Errors')
+              ))
+              ->setSeparator(" ")
+              ->setAttrib('class', 'radio'); ?>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <?php
+          $birthdate = $this->profileForm->getElement('birthdate')->getValue();
+          $bdels = explode('-', $birthdate);
+          ?>
+          <li class="gfield gsection">
+            <label class="gfield_label">Birthday</label>
+            <div class="ginput_container">
+              <ul class="gfield_selecboxes">
+                <li>
+                  <select name="bd-month" id="bd-month" class="bdgen">
+                    <?php $months = Zend_Locale::getTranslationList('month', 'en_US'); ?>
+                    <option value="00" <?php echo ('' == $birthdate) ? 'selected="selected"' : ''; ?>>--</option>
+                    <?php foreach($months as $key => $val): ?>
+                      <option value="<?php printf("%02d", $key); ?>" <?php echo ($key == (int) $bdels[1]) ? 'selected="selected"' : ''; ?>><?php echo $val; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </li>
+                <li>
+                  <select name="bd-day" id="bd-day" class="bdgen">
+                    <option value="00" <?php echo ('' == $birthdate) ? 'selected="selected"' : ''; ?>>--</option>
+                    <?php for($i=1;$i<=31;$i++): ?>
+                      <option value="<?php printf("%02d", $i); ?>" <?php echo ($i == (int) $bdels[2]) ? 'selected="selected"' : ''; ?>><?php echo $i; ?></option>
+                    <?php endfor; ?>
+                  </select>
+                </li>
+                <li>
+                  <select name="bd-year" id="bd-year" class="bdgen">
+                    <option value="0000" <?php echo ('' == $birthdate) ? 'selected="selected"' : ''; ?>>----</option>
+                    <?php $curyear = date('Y', time()); ?>
+                    <?php for($i=1970;$i<=$curyear-5;$i++): ?>
+                      <option value="<?php echo $i; ?>" <?php echo ($i == (int) $bdels[0]) ? 'selected="selected"' : ''; ?>><?php echo $i; ?></option>
+                    <?php endfor; ?>
+                  </select>
+                </li>
+              </ul>
+              <?php echo $this->profileForm->getElement('birthdate')->setDecorators(array('viewHelper')); ?>
+              <?php echo $this->formError($errors, 'birthdate'); ?>
+            </div>
+
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield gsection">
+            <label class="gfield_label">Bio</label>
+            <div class="ginput_container">
+              <textarea name="bio" rows="8" cols="40" class="large"><?php echo $this->authUser->getMeta('bio'); ?></textarea>
+              <?php echo $this->formError($errors, 'bio'); ?>
+              <small>Tell everyone a bit about yourself (300 chars.)</small>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="gform_footer">
+        <input type="submit" class="btn-save-changes" value="Save changes" title="Save changes" />
+      </div>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,19 @@
+<? $title = (isset($this->q)) ? 'Search for "' . $this->q . '"' : 'Search'; ?>
+<? $this->headTitle($title); ?>
+
+<section id="serp"> 
+  <?= $this->form; ?>
+
+  <h1><?= $title; ?></h1>
+
+  <ul>
+  <? foreach($this->paginator as $hit): ?>
+    <? if(null === $hit['entry_uuid']) continue; ?>
+    <li>
+      <a class="feed_entry" href="<?php echo $this->url(array('entry_uuid' => $hit['entry_uuid']), 'entry'); ?>"><?php echo $hit['entry_title']; ?></a>
+    </li>
+  <? endforeach; ?>
+  </ul>
+
+  <?php echo $this->paginationControl($this->paginator, 'Sliding', 'dashboard/_pagination.phtml'); ?>
+</section>

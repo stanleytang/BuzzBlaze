@@ -1,0 +1,12 @@
+<!-- Account drop down -->
+<div class="dd" id="dd-accounts">
+  <?php if(Zend_Auth::getInstance()->hasIdentity()): ?>
+    <ul>
+      <li><a href="<?php echo $this->url(array('username' => Zend_Auth::getInstance()->getIdentity()), 'following'); ?>">Friends Manager</a></li>
+      <li><a href="<?php echo $this->url(array('action' => 'account', 'controller' => 'settings'), 'default'); ?>">Account Settings</a></li>
+      <li><a href="<?= $this->url(array(), 'logout'); ?>">Logout</a></li>
+    </ul>
+    <div class="cl">&nbsp;</div>
+  <?php endif; ?>
+</div>
+<!-- END Account drop down -->

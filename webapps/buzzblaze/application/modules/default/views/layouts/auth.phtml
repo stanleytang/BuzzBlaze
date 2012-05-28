@@ -1,0 +1,114 @@
+<?= $this->doctype(); ?>
+<html>
+<head>
+  <?= $this->partial('_partial/assets.phtml'); ?>
+  <?= $this->partial('_partial/assets_panel.phtml'); ?>
+  <?= $this->partial('_partial/head.phtml'); ?>
+</head>
+<body>
+  <div id="wrap">
+
+      <?= $this->partial('_partial/header.phtml'); ?>
+
+      <!-- Main part -->
+      <div id="main">
+          <div class="shell">
+
+              <!-- Content -->
+              <div id="content" class="left">
+
+                  <?= $this->partial('_partial/account_menu.phtml'); ?>
+
+                  <!-- Flash messages -->
+                  <? if(isset($this->messages) && !empty($this->messages)): ?>
+                  <div id="messages">
+                    <span><?= current($this->messages); ?></span>
+                  </div>
+                  <? else: ?>
+                  <div id="messages" style="display: none;"></div>
+                  <? endif; ?>
+                  <!-- END Flash messages -->
+
+                  <?= $this->layout()->content; ?>
+
+              </div>
+              <!-- END Content -->
+
+              <!-- Sidebar -->
+              <div id="sidebar" class="right">
+
+                  <!-- User info -->
+                  <div class="box user-info">
+                      <ul>
+                          <li class="avatar left">
+                            <a href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'profile'); ?>">
+                              <div class="profile-img-avatar"><img src="<?php echo $this->authUser->profilePicture(true); ?>" /></div>
+                            </a>
+                          </li>
+                          <li class="section left">
+                            <a id="n_following" href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'following'); ?>">
+                              <?php echo $this->authUser->statistic('following'); ?>
+                            </a> Following
+                          </li>
+                          <li class="section left">
+                            <a id="n_followers" href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'followers'); ?>">
+                              <?php echo $this->authUser->statistic('followers'); ?>
+                            </a> Followers
+                          </li>
+                          <li class="section left">
+                            <a id="n_likes" href="<?php echo $this->url(array('username' => $this->authUser->getUsername()), 'likes'); ?>">
+                              <?php echo $this->authUser->statistic('likes'); ?>
+                            </a> Likes
+                          </li>
+                      </ul>
+                      <div class="cl">&nbsp;</div>
+                  </div>
+                  <!-- END User info -->
+
+                  <?= $this->partial('_partial/ads.phtml'); ?>
+
+              </div>
+              <!-- END Sidebar -->
+
+              <div class="cl">&nbsp;</div>
+          </div>
+      </div>
+      <!-- END Main part -->
+
+      <!-- Sticky footer -->
+      <div id="footer-push"></div>
+      <!-- END Sticky footer -->
+  </div>
+
+  <?= $this->partial('_partial/footer.phtml'); ?>
+
+  <script type="text/javascript">
+    jQuery(function($) {
+      if(1 == $('#feedurl').length) {
+        $('#feedurl').autocomplete({
+          minLength: 3,
+          source: function(request, response) {
+            $.getJSON("/search?t=f", {
+              q: request.term
+            }, response );
+          },
+          focus: function( event, ui ) {
+            $( "#feedurl" ).val( ui.item.feed_url );
+            return false;
+          },
+          select: function( event, ui ) {
+            $( "#feedurl" ).val( ui.item.feed_url );
+            return false;
+          }
+        })
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+          return $( "<li></li>" )
+            .data( "item.autocomplete", item )
+            .append( "<a><strong>" + item.feed_title + "</strong><br />" + item.feed_description + "</a>" )
+            .appendTo( ul );
+        };
+      }
+    });
+  </script>
+</body>
+</html>

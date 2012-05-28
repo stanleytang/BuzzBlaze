@@ -1,0 +1,14 @@
+<?= $this->doctype(); ?>
+<html>
+<head>
+  <?= $this->partial('_partial/assets.phtml'); ?>
+  <?= $this->partial('_partial/assets_panel.phtml'); ?>
+  <?= $this->partial('_partial/head.phtml'); ?>
+</head>
+<body id="minimal">
+  <div id="container">
+    <?= $this->layout()->content; ?>
+  </div>
+  <?= $this->inlineScript(); ?>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?php
+if(null === $this->model->username) {
+  continue;
+}
+
+$class = '';
+$output = null;
+$fullname = $this->model->full_name;
+if(' ' == $fullname) {
+  $fullname = $this->model->username;
+}
+
+switch($this->model->event) {
+  case 'join':
+    $class = 'ico-profile';
+    $output = '<a href="/' . $this->model->username . '">' . $fullname . ' joined BuzzBlaze</a>';
+    break;
+
+  case 'update_profile':
+    $class = 'ico-profile';
+    $output = '<a href="/' . $this->model->username . '">' . 'Updated: bio, location</a>';
+    break;
+
+  case 'update_profile_picture':
+    $class = 'ico-profile';
+    $output = '<a href="/' . $this->model->username . '">' . 'Updated: profile picture</a>';
+    break;
+
+  case 'like':
+    $class = 'ico-like';
+    $output = '<a class="feed_entry" href="/entry/' . $this->model->object_uuid . '">' . $this->model->object_title . '</a>';
+    break;
+
+  case 'add_feed':
+    $class = 'ico-rss';
+    $output = '<a href="/feed/' . $this->model->object_uuid . '">' . $this->model->object_title . '</a>';
+    break;
+}
+?>
+
+<? if(null !== $output): ?>
+  <li class="<?= $class; ?>">
+    <span></span> <?= $output; ?>
+    <span class="small"><?= $this->relativeDate(strtotime($this->model->created)); ?></span>
+  </li>
+<? endif; ?>

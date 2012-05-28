@@ -1,0 +1,99 @@
+<?= $this->doctype(); ?>
+<html>
+<head>
+  <?= $this->partial('_partial/assets.phtml'); ?>
+  <?= $this->partial('_partial/assets_panel.phtml'); ?>
+  <?= $this->partial('_partial/head.phtml'); ?>
+</head>
+<body id="home">
+  <div id="wrap">
+
+    <div id="header">
+      <div class="shell">
+      <h1 id="logo-big" class="left"><a href="<?php echo $this->url(array(), 'default'); ?>">BuzzBlaze</a></h1>
+
+        <div id="login">
+          <a href="#" class="btn">
+            <strong>LOGIN</strong>
+            <small>returning users</small>
+          </a>
+
+          <div class="login-dd">
+            <div class="shadow">
+              <div class="inner">
+                <p>Login to your BuzzBlaze Dashboard</p>
+                <div class="login-form">
+
+                  <form action="<?php echo $this->url(array(), 'login'); ?>" method="post">
+                    <div><label>Username or email</label></div>
+                    <div><input name="identity" type="text" class="field" value="" title="" /></div>
+                    <div><label>Password</label></div>
+                    <div><input name="password" type="password" class="field" value="" title="" /></div>
+                    <div class="details">
+                      <label class="left"><input name="rememberme" type="checkbox" class="checkbox" value="1" title="" /> Remember Me</label>
+                      <a href="<?php echo $this->url(array(), 'forgot'); ?>" class="right">Forgot password?</a>
+                    </div>
+                    <div>
+                      <input type="submit" class="submit right notext" value="LOGIN" title="LOGIN" />
+                      <div class="cl">&nbsp;</div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of login -->
+
+        <div class="cl">&nbsp;</div>
+      </div>
+
+    </div>
+    <!-- end of header -->
+
+    <div id="main">
+      <div class="shell">
+
+        <!-- Flash messages -->
+        <? if(isset($this->messages) && !empty($this->messages)): ?>
+        <div id="messages">
+          <span><?= current($this->messages); ?></span>
+        </div>
+        <? else: ?>
+        <div id="messages" style="display: none;"></div>
+        <? endif; ?>
+        <!-- END Flash messages -->
+
+        <? if(isset($this->isStatic)): ?>
+
+          <div id="menu">
+            <?= $this->partial('_partial/static_menu.phtml'); ?>
+          </div>
+
+          <div id="content-inner" class="left" style="margin-left: 20px;">
+            <?php echo $this->layout()->content; ?>
+          </div>
+          <div class="cl">&nbsp;</div>
+
+        <? else: ?>
+
+          <?= $this->layout()->content; ?>
+
+        <? endif; ?>
+
+      </div>
+    </div>
+
+    <!-- Sticky footer -->
+    <div id="footer-push"></div>
+    <!-- END Sticky footer -->
+
+  </div>
+
+  <?= $this->partial('_partial/footer.phtml'); ?>
+  <script type="text/javascript">
+    Cufon.now();
+  </script>
+
+</body>
+</html>

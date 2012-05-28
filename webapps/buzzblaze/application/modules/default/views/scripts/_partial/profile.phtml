@@ -1,0 +1,62 @@
+<? $auth = Zend_Auth::getInstance(); ?>
+<div id="user_picture" class="grid_2">
+  <a href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'profile'); ?>">
+    <div class="profile-img"><img src="<?php echo $this->model->profilePicture(); ?>" /></div>
+  </a>
+</div>
+
+<div id="user_info" class="grid_3">
+  <h4>
+    <a href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'profile'); ?>">
+      <?php echo $this->model->getUsername(); ?>
+    </a>
+  </h4>
+  <h5><a href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'user_feeds'); ?>"><?php echo $this->model->statistic('feeds'); ?> Blazes</a></h5>
+</div>
+<div class="clear"></div>
+
+<div id="user_status_update">
+  <div id="user_status">
+    <?php if('' != $this->model->getMeta('status_update')): ?>
+      <?php echo $this->model->getMeta('status_update'); ?>
+    <?php endif; ?>
+  </div>
+
+  <?php if($auth->hasIdentity()): ?>
+    <a href="javascript:;" id="update_status">Update Status</a>
+    <?php echo new BuzzBlaze_Form_StatusUpdate(); ?>
+  <?php endif; ?>
+</div>
+
+<div id="user_rel">
+<?php if($auth->hasIdentity()): ?>
+  <?php if ($auth->getIdentity() == $this->model->getUsername()): ?>
+    <span class="itsyou"></span>
+  <?php else: ?>
+    <?php $authUser = Zend_Registry::get('authUser'); ?>
+    <?php if($authUser->isFollowing($this->model)): ?>
+      <a class="unfollow_user" rel="nofollow" href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'profile'); ?>">Unfollow</a>
+    <?php else: ?>
+      <a class="follow_user" rel="nofollow" href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'profile'); ?>">Follow</a></span>
+    <?php endif; ?>
+  <?php endif; ?>
+<?php else: ?>
+  <a rel="nofollow" href="<?php echo $this->url(array(), 'register'); ?>">Follow</a>
+<?php endif; ?>
+</div>
+
+<div id="user_stats">
+  <div><span>Following</span><a id="n_following" href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'following'); ?>"><?php echo $this->model->statistic('following'); ?></a></div>
+  <div><span>Followers</span><a id="n_followers" href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'followers'); ?>"><?php echo $this->model->statistic('followers'); ?></a></div>
+  <div><span>Likes</span><a  id="n_likes" href="<?php echo $this->url(array('username' => $this->model->getUsername()), 'likes'); ?>"><?php echo $this->model->statistic('likes'); ?></a></div>
+</div>
+<div class="clear"></div>
+
+<div id="user_meta">
+  <p>
+    <strong>Name: </strong><?php echo $this->model->getFullName(); ?><br />
+    <?php $websiteUrl = (strstr($this->model->getMeta('website'), 'http://')) ? $this->model->getMeta('website') : 'http://'.$this->model->getMeta('website');?>
+    <strong>Website: </strong><a rel="me nofollow" href="<?php echo $websiteUrl; ?>"><?php echo $this->model->getMeta('website'); ?></a><br />
+    <strong>Bio: </strong><?php echo $this->model->getMeta('bio'); ?>
+  </p>
+</div>

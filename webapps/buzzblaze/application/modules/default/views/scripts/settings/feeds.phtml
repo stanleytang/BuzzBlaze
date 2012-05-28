@@ -1,0 +1,35 @@
+<?php
+$title = 'Feeds Manager';
+$userPages = $this->authUser->pages();
+?>
+<? $this->headTitle($title); ?>
+
+<?php echo $this->partial('settings/_feeds_menu.phtml', array('active' => $this->active)); ?>
+
+<div id="content-inner" class="right">
+  <h1 class="pagetitle"><?php echo $title; ?></h1>
+  <ul class="manage-feeds-list dynamic-list">
+    <? foreach($this->paginator as $item): ?>
+      <? if(null === $item['feed_uuid']) continue; ?>
+      <li>
+        <a href="<?php echo $this->url(array('feed_uuid' => $item['feed_uuid']), 'feed'); ?>">
+          <img src="<?= $this->favicon($item['feed_website']); ?>" width="16" height="16" class="left favicon" />
+        </a>
+        <div class="content">
+          <p><?php echo $item['feed_title']; ?></p>
+          <p class="meta"><a href="<?php echo $item['feed_url']; ?>"><?php echo $item['feed_url']; ?></a></p>
+        </div>
+        <a data-ufeed="<?php echo $item['ufeed_ID']; ?>" data-page="<?php echo $item['page_ID']; ?>" href="<?php echo $this->url(array('feed_uuid' => $item['feed_uuid']), 'feed'); ?>" class="rm_ufeed l-remove">remove</a>
+
+        <select class="page-selector" data-ufeed="<?php echo $item['ufeed_ID']; ?>" data-page="<?php echo $item['page_ID']; ?>">
+          <?php foreach($userPages as $page): ?>
+            <?php $selected = ($page->getId() == $item['page_ID']) ? ' selected="selected"' : ''; ?>
+            <option value="<?= $page->getId(); ?>"<?php echo $selected; ?>><?= $page->getTitle(); ?></option>
+          <?php endforeach; ?>
+        </select>
+      </li>
+    <? endforeach; ?>
+  </ul>
+
+  <?php echo $this->paginationControl($this->paginator, 'Sliding', '_partial/pagination.phtml'); ?>
+</div>

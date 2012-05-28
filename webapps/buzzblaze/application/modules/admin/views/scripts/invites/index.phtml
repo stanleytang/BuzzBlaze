@@ -1,0 +1,37 @@
+<h3>Invites</h3>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Expires</th>
+    <th>Reg Count</th>
+    <th>Preview</th>
+    <th>-</th>
+  </tr>
+
+  <?php foreach($this->invites as $invite): ?>
+    <tr>
+      <td><?php echo $invite->getCode(); ?></td> 
+      <td><?php echo $invite->getExpires(); ?></td> 
+      <td><?php echo $invite->getRegCount(); ?></td> 
+      <td><?php echo SITE_URL; ?>/register?invite_code=<?php echo $invite->getCode(); ?></td>
+      <td><a href="<?php echo $this->url(array('action' => 'delete', 'invite_ID' => $invite->getId()), 'default'); ?>">[ x ]</a></td>
+    </tr>
+  <?php endforeach; ?>
+</table>
+
+<h3>Add Invite Code</h3>
+<?php echo $this->form; ?>
+
+<h3>Generate Invite Codes</h3>
+<?php echo $this->genForm; ?>
+
+<?php $this->inlineScript()->captureStart(); ?>
+jQuery(function($) {
+  $('.datepicker').datepicker({
+    changeMonth: true,
+    changeYear: true,
+    dateFormat: 'yy-mm-dd'
+  });
+});
+<?php $this->inlineScript()->captureEnd(); ?>

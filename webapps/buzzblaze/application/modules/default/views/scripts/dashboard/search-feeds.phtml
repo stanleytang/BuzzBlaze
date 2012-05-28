@@ -1,0 +1,44 @@
+<? $title = (isset($this->q)) ? 'Search for "' . $this->q . '"' : 'Search'; ?>
+<? $this->headTitle($title); ?>
+
+<?php echo $this->partial('settings/_feeds_menu.phtml'); ?>
+
+<div id="content-inner" class="right">
+  <h1 class="pagetitle">Feed Search</h1>
+
+  <!-- Feed search -->
+  <div id="feed-search" class="small">
+    <form action="" method="get">
+      <div>
+        <span class="field small-field left">
+        <input type="text" class="blink" name="q" value="<?php echo (isset($this->q)) ? $this->q : 'Enter keywords or feed URL to search for feeds'; ?>" title="Enter keywords or feed URL to search for feeds" />
+        </span>
+        <input type="submit" class="btn-go notext left" name="" value="Go" />
+        <div class="cl">&nbsp;</div>
+      </div>
+    </form>
+  </div>
+  <!-- END Feed search -->
+
+  <?php if(isset($this->paginator)): ?>
+    <h2 class="title">Results</h2>
+    <ul class="results-list dynamic-list">
+
+      <? foreach($this->paginator as $item): ?>
+        <li>
+          <a href="<?php echo $this->url(array('feed_uuid' => $item['feed_uuid']), 'feed'); ?>">
+            <img src="<?= $this->favicon($item['feed_website']); ?>" width="16" height="16" class="left favicon" />
+          </a>
+          <div class="content">
+            <p><?php echo $item['feed_title']; ?></p>
+            <p class="meta"><a href="<?php echo $item['feed_url']; ?>"><?php echo $item['feed_url']; ?></a></p>
+          </div>
+          <a href="#" class="l-new">add</a>
+        </li>
+      <? endforeach; ?>
+
+    </ul>
+
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', 'dashboard/_pagination.phtml'); ?>
+  <?php endif; ?>
+</div>

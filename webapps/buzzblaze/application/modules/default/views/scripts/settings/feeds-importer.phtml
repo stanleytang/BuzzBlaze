@@ -1,0 +1,104 @@
+<?php $title = 'Feeds Importer'; ?>
+<?php echo $this->headTitle($title); ?>
+
+<?php echo $this->partial('settings/_feeds_menu.phtml', array('active' => $this->active)); ?>
+
+<div id="content-inner" class="right">
+  <h1 class="pagetitle"><?php echo $title; ?></h1>
+  <div class="gform_wrapper">
+
+    <form action="" method="post" enctype="application/x-www-form-urlencoded">
+      <input type="hidden" name="_method" value="SYNC_GA" id="_method" />
+
+      <div class="gform_body">
+        <ul class="gform_fields">
+          <li class="gfield gsection">
+            <h3>Google Reader Import</h3>
+            <small>Import feeds from your Google Reader account</small>
+          </li>
+
+          <li class="gfield">
+            <label class="gfield_label">Google Account</label>
+            <div class="ginput_container">
+              <?php echo $this->googleForm->getElement('google_username')->setDecorators(array(array('ViewHelper'), array('Errors')))->setAttrib('class', 'medium left'); ?>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield">
+            <label class="gfield_label">Password</label>
+            <div class="ginput_container">
+              <?php echo $this->googleForm->getElement('google_password')->setDecorators(array(array('ViewHelper'), array('Errors')))->setAttrib('class', 'medium left'); ?>
+              <div class="cl">&nbsp;</div>
+              <small>BuzzBlaze will not store your account information</small>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield gsection">
+            <label class="gfield_label">&nbsp;</label>
+            <div class="ginput_container">
+              <input type="submit" title="Import" value="Import" class="btn-import" />
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+        </ul>
+      </div>
+    </form>
+
+    <form action="" method="post" enctype="application/x-www-form-urlencoded">
+      <input type="hidden" name="_method" value="OPML_IMPORT" id="_method" />
+      <input type="hidden" name="MAX_FILE_SIZE" value="2097152" id="MAX_FILE_SIZE" />
+
+      <div class="gform_body">
+        <ul class="gform_fields">
+          <li class="border">&nbsp;</li>
+
+          <li class="gfield gsection">
+            <h3>OPML</h3>
+            <small>Import feeds from an OPML file</small>
+          </li>
+
+          <li class="gfield">
+            <label class="gfield_label">Upload</label>
+            <div class="ginput_container">
+              <div class="input-file">
+                <a href="#">Choose File</a>
+                <span class="text">No file chosen</span>
+                <input type="file" name="opml" class="file" value="" title="" />
+              </div>
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+
+          <li class="gfield gsection">
+            <label class="gfield_label">&nbsp;</label>
+            <div class="ginput_container">
+              <input type="submit" title="Import" value="Import" class="btn-import" />
+            </div>
+            <div class="cl">&nbsp;</div>
+          </li>
+        </ul>
+      </div>
+    </form>
+
+    <div class="gform_body">
+      <ul class="gform_fields">
+        <li class="border">&nbsp;</li>
+        <li class="gfield gsection">
+          <h3>Download Feed List</h3>
+          <small>Get your subscriptions in XML format</small>
+        </li>
+
+        <li class="gfield gsection">
+          <label class="gfield_label">Download</label>
+          <div class="ginput_container">
+            <a href="<?= $this->url(array(), 'feeds_importer'); ?>?_method=OPML_EXPORT" class="btn-export">Export</a>
+          </div>
+          <div class="cl">&nbsp;</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

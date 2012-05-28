@@ -1,0 +1,521 @@
+/********** CONTENTS **********/
+/** 01. RESET **/
+/** 02. GENERAL **/
+/** 03. TEXT STYLES **/
+/** 04. HEADER **/
+/** 05. MAIN **/
+/** 06. TWITTER **/
+/** 07. CONTACT **/
+/** 08. BUTTONS & ICONS **/
+/** 09. TIMER STYLES **/
+
+
+/*****SWITCHER*****/
+#switch {
+	background: #000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 5px;
+	-webkit-border-radius: 0 0 5px 0;
+	-moz-border-radius: 0 0 5px 0;
+	-o-border-radius: 0 0 5px 0;
+	border-radius: 0 0 5px 0;
+	border-right: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+}
+
+#switch p {
+	color: #eee;
+	padding-left: 4px;
+}
+
+#switch ul {
+	list-style: none;
+	float: left;
+}
+
+#switch li {
+	display: inline;
+}
+
+#switch ul li a {
+	float: left;
+	margin: 5px;
+	text-indent:-9999px;
+	width: 15px;
+	height: 15px;
+	padding: 1px;
+}
+
+#switch a:hover {
+	border: 1px solid #eee;
+	padding: 0;
+}
+
+.bl {
+	background: url(images/bl.png) no-repeat;
+}
+
+.gr {
+	background: url(images/gr.png) no-repeat;
+}
+
+.or {
+	background: url(images/or.png) no-repeat;
+}
+
+
+/***** 01. RESET *****/
+body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldset, blockquote {
+	margin: 0; padding: 0; border: 0;
+}
+
+/***** 02. GENERAL *****/
+	body {
+		background: #eee url(images/bgHatch.png) repeat;
+		font-family: Arial, Helvetica, sans-serif;
+		margin: 0 auto;
+		width: 800px;
+	}
+	
+	.box245 { /** Twitter/Contact **/
+		width: 245px;
+		float: right;
+		margin: 0 0 0 30px;
+	}
+	
+	.box500 {
+		width: 500px;
+		float: left;
+	}
+	
+	.box800 { /**Full width**/
+		width: 900px;
+		float: left;
+		margin: 0 30px 30px 0;
+	}
+	
+	.float_left {
+		float: left;
+	}
+	
+	.float_right {
+		float: right;
+	}
+	
+	img.float_left {
+		margin: 0 10px 5px 0;
+	}
+	
+	img.float_right {
+		margin: 0 0 5px 10px;
+	}
+				
+/***** 03. TEXT STYLES *****/				
+	a {
+		color: #7dc1d5;
+		text-decoration: none;
+		outline: none;
+	}
+	
+	a:hover {
+		color: #277c94;
+	}
+	
+	p {
+		color: #277c94;
+		font-size: 12px;
+		line-height: 18px;
+	}
+	
+	h1 {
+		color: #094455;
+		font-size: 26px;
+		margin: 0 0 15px 0;
+		font-weight: bold;
+	}
+	
+	h2 {
+		color: #094455;
+		font-size: 22px;
+		margin: 0 0 10px 0;
+	}
+	
+	h3 {
+		color: #3ba1b6;
+		font-size: 16px;
+		line-height: 28px;
+		font-style: oblique;
+		margin-bottom: 10px;
+	}
+	
+	ul.list {
+		color: #277c94;
+		font-size: 12px;
+		line-height: 18px;
+		margin: 20px 0 20px 0;
+		list-style-position: inside;
+	}
+	
+		ul.list ul {
+			margin: 0;
+			padding: 3px 0 3px 25px;
+		}
+
+	ol.list {
+		color: #277c94;
+		font-size: 12px;
+		line-height: 18px;
+		margin: 20px 0 20px 0;
+		list-style-position: inside;
+	}	
+	
+		ol.list ol {
+			margin: 0;
+			padding: 3px 0 3px 25px;
+		}
+
+				
+/***** 04. HEADER *****/
+	#header {
+		height: 150px;
+		padding: 30px 0;
+		margin-top: 20px;
+	}
+	
+	.logo {
+		float: left;
+		background: url(images/blue/logo.png) no-repeat;
+		width: 750px;
+		height: 150px;
+		text-indent: -9999px;
+	}
+	
+/***** 05. MAIN *****/
+
+	#timer {
+		width: 740px;
+		float: left;
+		padding: 0 30px
+	}
+	
+	#main {
+		width: 800px;
+		margin-top: 20px;
+		float: left;
+	}
+	
+	#pie {
+		height: 250px;
+		width: 250px;
+		position: relative;
+		float: left;
+		margin: 0 30px;
+	}
+	
+		.pie10 {
+			background: url(images/blue/pie/pie10.png) no-repeat;
+		}
+		
+		.pie20 {
+			background: url(images/blue/pie/pie20.png) no-repeat;
+		}
+		
+		.pie30 {
+			background: url(images/blue/pie/pie30.png) no-repeat;
+		}
+		
+		.pie40 {
+			background: url(images/blue/pie/pie40.png) no-repeat;
+		}
+		
+		.pie50 {
+			background: url(images/blue/pie/pie50.png) no-repeat;
+		}
+		
+		.pie60 {
+			background: url(images/blue/pie/pie60.png) no-repeat;
+		}
+		
+		.pie70 {
+			background: url(images/blue/pie/pie70.png) no-repeat;
+		}
+		
+		.pie80 {
+			background: url(images/blue/pie/pie80.png) no-repeat;
+		}
+		
+		.pie90 {
+			background: url(images/blue/pie/pie90.png) no-repeat;
+		}
+		
+		.pie100 {
+			background: url(images/blue/pie/pie100.png) no-repeat;
+		}
+		
+	
+/***** 06. TWITTER *****/
+	#twitter_update_list {
+		font-size: 12px;
+		color: #277c94;
+	}
+	
+		#twitter_update_list li {
+			list-style: none;
+			margin-bottom: 20px;
+			line-height: 18px;
+		}
+		
+		#twitter_update_list span a {
+			display: inline;
+			padding: 0;
+		}
+		
+		#twitter_update_list a {
+			display:block;
+			padding-top: 5px;
+		}
+
+/***** 07. CONTACT *****/
+.notification_error {
+	font-size: 12px;
+	line-height: 20px;
+	padding: 10px 0 15px 70px;
+	background: url(images/icons/icon_mail_no.png) no-repeat 0 50%;
+	color: #a1272c;
+}
+
+.notification_ok {
+	font-size: 12px;
+	line-height: 20px;
+	padding: 10px 0 15px 70px;
+	background: url(images/icons/icon_mail_yes.png) no-repeat 0 50%;
+	color: #518f2c;
+}
+
+.info_fieldset {
+	margin: 0;
+	padding: 0;
+}
+
+/***Contact form label text***/
+.label {
+	width: 80px;
+	float: left;
+	text-align: left;
+	font-size: 14px;
+	color: #094455;
+}
+
+/***Input & Textarea styles***/
+input[type=text], textarea {
+	margin: 5px 0 10px 0;
+	padding: 6px 3px;
+	float: left;
+	background: #c0e3eb;
+	color: #277c94;
+	border: 1px solid #f9f9f9;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	font: 14px arial;
+}
+
+/***Input & Textarea styles on hover***/
+input[type=text]:hover, textarea:hover {
+	border-color: #fff;
+}
+
+/***Input & Textarea styles on input***/
+input[type=text]:focus, textarea:focus {
+	-webkit-box-shadow: #a5b6ba 0 0 14px;
+	-moz-box-shadow: #a5b6ba 0 0 14px;
+	-o-box-shadow: #a5b6ba 0 0 14px;
+	box-shadow: #a5b6ba 0 0 14px;
+}
+	
+br { clear: left; }
+	
+/***** 08. BUTTONS & ICONS *****/
+/***Orange Button***/
+	.button {
+		cursor: pointer;
+		color: #fff;
+		text-shadow: #de6e00 0 -1px 0;
+		font-weight: bold;
+		font-family: Arial, Helvetica, sans-serif;
+		border: 1px solid #ff920d;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-o-border-radius: 5px;
+		border-radius: 5px;
+		-webkit-box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		-moz-box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		-o-box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		background: #ff920d;
+		background: -webkit-gradient(linear, left top, left bottom, from(#ffc039), to(#ff920d));
+		background: -moz-linear-gradient(top, #ffc039, #ff920d);
+		background: -o-linear-gradient(top, #ffc039, #ff920d);
+		background: linear-gradient(top, #ffc039, #ff920d);
+		margin: 5px 10px 10px 0;
+		padding: 3px 10px;
+		font-size: 14px;
+	}
+	
+	.button:hover, .button:focus {
+		color: #fff;
+		text-shadow: #de6e00 0 -1px 0;
+		font-weight: bold;
+		font-family: Arial, Helvetica, sans-serif;
+		border-color: #de6e00;
+		-webkit-box-shadow: #ffc039 0 0 5px;
+		-moz-box-shadow: #ffc039 0 0 5px;
+		-o-box-shadow: #ffc039 0 0 5px;
+		box-shadow: #ffc039 0 0 5px;
+	}
+	
+	.button:active {
+		background: #de6e00;
+		background: -webkit-gradient(linear, left top, left bottom, from(#ff920d), to(#de6e00));
+		background: -moz-linear-gradient(top, #ff920d, #de6e00);
+		background: -o-linear-gradient(top, #ff920d, #de6e00);
+		background: linear-gradient(top, #ff920d, #de6e00);
+	}
+
+/***Black Button***/
+.button_bl {
+		cursor: pointer;
+		color: #fff;
+		text-shadow: #000 0 -1px 0;
+		font-weight: bold;
+		font-family: Arial, Helvetica, sans-serif;
+		border: 1px solid #111;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-o-border-radius: 5px;
+		border-radius: 5px;
+		-webkit-box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		-moz-box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		-o-box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		background: #111;
+		background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#111));
+		background: -moz-linear-gradient(top, #333, #111);
+		background: -o-linear-gradient(top, #333, #111);
+		background: linear-gradient(top, #333, #111);
+		margin: 5px 10px 10px 0;
+		padding: 3px 10px;
+		font-size: 14px;
+	}
+	
+	.button_bl:hover, .button_bl:focus {
+		color: #fff;
+		text-shadow: #000 0 -1px 0;
+		font-weight: bold;
+		font-family: Arial, Helvetica, sans-serif;
+		border-color: #000;
+		-webkit-box-shadow: #666 0 0 5px;
+		-moz-box-shadow: #666 0 0 5px;
+		-o-box-shadow: #666 0 0 5px;
+		box-shadow: #666 0 0 5px;
+	}
+	
+	.button_bl:active {
+		background: #000;
+		background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#000));
+		background: -moz-linear-gradient(top, #222, #000);
+		background: -o-linear-gradient(top, #222, #000);
+		background: linear-gradient(top, #222, #000);
+	}
+	
+/***White Button***/
+.button_wh {
+		cursor: pointer;
+		color: #333;
+		text-shadow: #fff 0 1px 0;
+		font-weight: bold;
+		font-family: Arial, Helvetica, sans-serif;
+		border: 1px solid #ddd;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-o-border-radius: 5px;
+		border-radius: 5px;
+		-webkit-box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		-moz-box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		-o-box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		box-shadow: rgba(0, 0, 0, .25) 0 1px 1px;
+		background: #ddd;
+		background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#ddd));
+		background: -moz-linear-gradient(top, #f9f9f9, #ddd);
+		background: -o-linear-gradient(top, #f9f9f9, #ddd);
+		background: linear-gradient(top, #f9f9f9, #ddd);
+		margin: 5px 10px 10px 0;
+		padding: 3px 10px;
+		font-size: 14px;
+	}
+	
+	.button_wh:hover, .button_wh:focus {
+		color: #333;
+		text-shadow: #fff 0 1px 0;
+		font-weight: bold;
+		font-family: Arial, Helvetica, sans-serif;
+		border-color: #ccc;
+		-webkit-box-shadow: #ccc 0 0 5px;
+		-moz-box-shadow: #ccc 0 0 5px;
+		-o-box-shadow: #ccc 0 0 5px;
+		box-shadow: #ccc 0 0 5px;
+	}
+	
+	.button_wh:active {
+		background: #ccc;
+		background: -webkit-gradient(linear, left top, left bottom, from(#e9e9e9), to(#ccc));
+		background: -moz-linear-gradient(top, #e9e9e9, #ccc);
+		background: -o-linear-gradient(top, #e9e9e9, #ccc);
+		background: linear-gradient(top, #e9e9e9, #ccc);
+	}
+
+/***** 09. Timer Styles *****/
+	#countdown_dashboard {
+		width: 800px;
+		float: left;
+		margin: 0 30px 30px 92px;
+	}
+	
+	.dash {
+		float: left;
+		margin-left: 8px;
+		position: relative;
+	}
+	
+	.dash .digit {
+		font-size: 26px;
+		font-weight: bold;
+		float: left;
+		width: 13px;
+		text-align: center;
+		color: #3ba1b6;
+		position: relative;
+		top: -5px;
+	}
+	
+	.dash_title {
+		font-size: 26px;
+		color: #094455;
+		text-align: center;	
+		margin-left: 3px;
+		float: left;
+	}	
+	
+#slider,
+#slider .jcarousel-clip { width:  525px; height: 248px; position: relative; }
+#slider .jcarousel-clip { overflow: hidden; }
+#slider ul { list-style: none; height: 304px; overflow: hidden; position: relative; }
+#slider li { float: left; display: inline; width: 624px; height: 304px; }
+#slider-overlay { position: absolute; top:0; left: 0; display: block; z-index: 10; width: 525px; height: 248px; background: url(images/slider-overlay.png) no-repeat 0 0; }
+#slider .slider-navigation { position: absolute; top: 260px; left: 230px; }
+#slider .slider-navigation a { float: left; font-size: 0; line-height: 0; text-indent: -4000px; padding-right: 5px; width: 9px; height: 19px; background: url(images/slider-dots.png) no-repeat -3px -1px; }
+#slider .slider-navigation a:hover,
+#slider .slider-navigation a.active { background-position: -18px -1px; }

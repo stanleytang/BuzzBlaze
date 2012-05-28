@@ -1,0 +1,37 @@
+<?php
+if(null === $this->model->username) {
+  continue;
+}
+
+$output = null;
+$fullname = $this->full_name;
+if(' ' == $fullname) {
+  $fullname = $this->username;
+}
+
+switch($this->model->event) {
+  case 'join':
+    $output = $fullname . ' joined BuzzBlaze';
+    break;
+
+  case 'update_profile':
+    $output = 'Updated: bio, location';
+    break;
+
+  case 'update_profile_picture':
+    $output = 'Updated: profile picture';
+    break;
+
+  case 'like':
+    $output = '<a class="feed_entry" href="/entry/' . $this->model->object_uuid . '">' . $this->model->object_title . '</a>';
+    break;
+
+  case 'add_feed':
+    $output = '<a href="/feed/' . $this->model->object_uuid . '">' . $this->model->object_title . '</a>';
+    break;
+}
+?>
+
+<? if(null !== $output): ?>
+  <li class="<?= $this->model->event; ?>"><?= $output; ?></li>
+<? endif; ?>

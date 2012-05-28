@@ -1,0 +1,155 @@
+<?
+$auth = Zend_Auth::getInstance();
+$mine = ($auth->getIdentity() == $this->user->getUsername()) ? true : false;
+
+if($auth->hasIdentity()) {
+  $authUser = Zend_Registry::get('authUser');
+}
+
+?>
+<?= $this->doctype(); ?>
+<html>
+<head>
+  <?= $this->partial('_partial/assets.phtml'); ?>
+  <?= $this->partial('_partial/assets_panel.phtml'); ?>
+  <?= $this->partial('_partial/head.phtml'); ?>
+</head>
+<body>
+  <div id="wrap">
+
+      <?= $this->partial('_partial/header.phtml'); ?>
+
+      <!-- Main part -->
+      <div id="main">
+          <div class="shell" id="profile">
+
+              <!-- Content -->
+              <div id="content" class="left">
+
+                  <?= $this->partial('_partial/account_menu.phtml'); ?>
+
+                  <!-- User info -->
+                  <div class="user-details">
+                      <div class="profile-img"><img src="<?php echo $this->user->profilePicture(); ?>" alt="" class="left" /></div>
+
+                      <div class="right">
+                      <h2><a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'profile'); ?>"><strong><?= $this->user->getFullName(); ?></strong></a> subscribes to <a href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'user_feeds'); ?>"><?= $this->user->statistic('feeds'); ?> sources</a></h2>
+
+                      <?php if($auth->hasIdentity()): ?>
+                        <?php if($mine): ?>
+                          <span class="itsyou"></span>
+                        <?php else: ?>
+                          <?php if($authUser->isFollowing($this->user)): ?>
+                            <a class="unfollow_user l-follow notext following" rel="nofollow" href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'profile'); ?>">Unfollow</a>
+                          <?php else: ?>
+                            <a class="follow_user l-follow notext" rel="nofollow" href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'profile'); ?>">Follow</a></span>
+                          <?php endif; ?>
+                        <?php endif; ?>
+                      <?php else: ?>
+                        <a rel="nofollow" href="<?php echo $this->url(array(), 'register'); ?>" class="l-follow notext">Follow</a>
+                      <?php endif; ?>
+
+                      </div>
+                      <div class="cl">&nbsp;</div>
+                  </div>
+                  <!-- END User info -->
+
+                  <!-- Flash messages -->
+                  <? if(isset($this->messages) && !empty($this->messages)): ?>
+                  <div id="messages">
+                    <span><?= current($this->messages); ?></span>
+                  </div>
+                  <? else: ?>
+                  <div id="messages" style="display: none;"></div>
+                  <? endif; ?>
+                  <!-- END Flash messages -->
+
+                  <?= $this->layout()->content; ?>
+
+              </div>
+              <!-- END Content -->
+
+              <!-- Sidebar -->
+              <div id="sidebar" class="right">
+
+                  <!-- User info -->
+                  <div id="user_profile" class="box user-info <?php echo ($mine) ? 'mine' : ''; ?>">
+                      <div class="box-updating">
+                          <span class="ar"></span>
+                          <p id="user_status">
+                            <?php if('' != $this->user->getMeta('status_update')): ?>
+                              <?php echo $this->user->getMeta('status_update'); ?>
+                            <?php endif; ?>
+
+                            <?php if ($auth->getIdentity() == $this->user->getUsername()): ?>
+                              <br /><a href="javascript:;" id="update_status">Update Status</a>
+                              <?php echo new BuzzBlaze_Form_StatusUpdate(); ?>
+                            <?php endif; ?>
+                          </p>
+                      </div>
+
+                      <div class="user-bio">
+                        <p><strong>Name</strong> <?= $this->user->getFullName(); ?></p>
+                        <p><strong>Whereabouts</strong> <?php echo $this->user->getMeta('location'); ?></p>
+                        <?php $websiteUrl = (strstr($this->user->getMeta('website'), 'http://')) ? $this->user->getMeta('website') : 'http://'.$this->user->getMeta('website');?>
+                        <p><strong>Web</strong> <a rel="me nofollow" href="<?php echo $websiteUrl; ?>"><?php echo $this->user->getMeta('website'); ?></a></p>
+                        <p><strong>Bio</strong> <?php echo $this->user->getMeta('bio'); ?></p>
+                      </div>
+                      <ul>
+                          <li class="section left">
+                            <a id="n_following" href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'following'); ?>">
+                              <?php echo $this->user->statistic('following'); ?>
+                            </a> Following
+                          </li>
+                          <li class="section left">
+                            <a id="n_followers" href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'followers'); ?>">
+                              <?php echo $this->user->statistic('followers'); ?>
+                            </a> Followers
+                          </li>
+                          <li class="section left">
+                            <a id="n_likes" href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'likes'); ?>">
+                              <?php echo $this->user->statistic('likes'); ?>
+                            </a> Likes
+                      </ul>
+                      <div class="cl">&nbsp;</div>
+                  </div>
+                  <!-- END User info -->
+
+                  <?= $this->partial('_partial/ads.phtml'); ?>
+
+                  <!-- Social stream -->
+                  <div class="box social-stream">
+                      <h2>Recent Activity</h2>
+
+                      <ul id="social">
+                        <?= $this->partialLoop('_partial/activity.phtml', $this->userActivities); ?>
+                        <li><a class="center" href="<?php echo $this->url(array('username' => $this->user->getUsername()), 'activities'); ?>">more activities &raquo;</a></li>
+                      </ul>
+
+                  </div>
+                  <!-- END Social stream -->
+
+              </div>
+              <!-- END Sidebar -->
+
+              <div class="cl">&nbsp;</div>
+          </div>
+      </div>
+      <!-- END Main part -->
+
+      <!-- Sticky footer -->
+      <div id="footer-push"></div>
+      <!-- END Sticky footer -->
+  </div>
+
+  <?= $this->partial('_partial/footer.phtml'); ?>
+  <script type="text/javascript">
+    <?php if(isset($authUser)): ?>
+      var mine = <?php echo ($mine) ? 'true' : 'false'; ?>;
+    <?php endif; ?>
+
+    Panels.initProfile();
+  </script>
+
+</body>
+</html>

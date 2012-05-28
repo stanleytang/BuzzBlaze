@@ -1,0 +1,1 @@
+a:3:{s:3:"url";s:22:"http://www.jtuned.com/";s:8:"feed_url";s:27:"http://www.jtuned.com/feed/";s:5:"build";s:14:"20110128231735";}
